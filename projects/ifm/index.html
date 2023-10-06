@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Imitating and Finetuning Model Predictive Control for Robust and Symmetric Quadrupedal Locomotion.">
+  <meta name="keywords" content="legged robot, Quadrupedal, control, reinforcement learning, imitation learning">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Imitating and Finetuning Model Predictive Control for Robust and Symmetric Quadrupedal Locomotion</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+  <!-- add this when related work is done (e.g. digit ifm) -->
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://faculty.cc.gatech.edu/~sha9/">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav> -->
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Imitating and Finetuning Model Predictive Control for Robust and Symmetric Quadrupedal Locomotion</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              Donghoon Youm*<sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://hyunyoungjung.github.io/">Hyunyoung Jung*</a><sup>2</sup>,</span>
+            <span class="author-block">
+              Hyeongjun Kim<sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.railab.kaist.ac.kr/">Jemin Hwanbo</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.dynamicrobot.kaist.ac.kr/">Hae-Won Park</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://faculty.cc.gatech.edu/~sha9/">Sehooon Ha</a><sup>2</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Korea Advanced Institute of Science and Technology (KAIST),</span>
+            <span class="author-block"><sup>2</sup>Georgia Institute of Technology</span>
+            <br>
+            <span class="author-block"><sup>*</sup>These two authors contribute equally</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://ieeexplore.ieee.org/abstract/document/10268037"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>RA-L</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://ieeexplore.ieee.org/abstract/document/10268037"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://youtu.be/KmL7mlGBkys"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/teaser.mp4"
+                type="video/mp4">
+      </video>
+      <!-- <h2 class="subtitle has-text-centered">
+        <strong>IFM</strong> framework can train policy that has robust, symmetric, periodic, and efficient action with minimum reward tuning.
+        As a result, the IFM policy can overcome slippery and stepped terrain robustly without any exteroceptive perception.
+      </h2> -->
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Control of legged robots is a challenging problem that has been investigated by different approaches, such as model-based control and learning algorithms.
+            This work proposes a novel <strong>Imitating and Finetuning Model Predictive Control (IFM)</strong> framework to take the strengths of both approaches.
+          </p>
+          <p>
+            Our framework first develops a conventional model predictive controller (MPC) using Differential Dynamic Programming and Raibert heuristic, which serves as an expert policy. 
+            Then we train a clone of the MPC using imitation learning to make the controller learnable. 
+            Finally, we leverage deep reinforcement learning with limited exploration for further finetuning the policy on more challenging terrains.
+          </p>
+          <p>
+            By conducting comprehensive simulation and hardware experiments, 
+            we demonstrate that the proposed <strong>IFM</strong> framework can significantly improve the performance of the given MPC controller 
+            on rough, slippery, and conveyor terrains that require careful coordination of footsteps.
+            We also showcase that <strong>IFM</strong> can efficiently produce more symmetric, periodic, and energy-efficient gaits 
+            compared to Vanilla RL with a minimal burden of reward shaping.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- learning framework -->       
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        
+        <h2 class="title is-3 has-text-centered">Learning Framework</h2>
+        
+        <div class="video-container">          
+          <video id="learning-framework"      
+                 autoplay
+                 muted
+                 preload
+                 playsinline
+                 loop
+                 width="100%">
+            <source src="static/videos/learning_framework.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <!-- <h2 class="subtitle">
+          <strong>IFM</strong> framework consists of three stages: 
+        </h2> -->
+        <p class="has-text-justified">
+          The <strong>IFM</strong> framework consists of three stages. 
+          In the first stage, we develop a model-based controller using Model Predictive Control (MPC), 
+          which takes an expert role in the framework. 
+          In the next stage, we employ imitation learning to mimic this expert policy, 
+          utilizing DAgger to mitigate the distribution mismatch problem. 
+          Finally, we fine-tune this pre-trained policy using reinforcement learning. 
+          Since our primary focus in downstream tasks is on achieving robustness and command tracking ability, 
+          we train our policy using command tracking rewards and expose it to various terrains with a curriculum. 
+          The advantage of the <strong>IFM</strong> framework lies in its ability to train a policy that exhibits robust, symmetric, periodic, and energy-efficient motions with minimal reward tuning.
+        </p>
+      </div>
+    </div>
+    <!-- /learning framework -->
+  </div>
+</section>    
+<!-- simulation demo -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-two-thirds">
+        <h1 class="title is-3">Simulation Demo</h1>
+      </div>
+    </div>        
+    <div class="tabs-widget">
+    <!-- <div class="tabs is-toggle is-fullwidth"> -->
+      <div class="tabs is-centered">
+        <ul class="is-marginless">
+          <li class="is-active"><a>Rough Terrain</a></li>
+          <li><a>Slippery Terrain</a></li>
+          <li><a>Conveyor Terrain</a></li>
+        </ul>
+      </div>
+    
+      <!-- videos. -->
+      <div class="tabs-content">
+        <div row>
+          <div class="columns is-vcentered has-text-centered is-full-width">
+            <div class="column">
+              <h2 class="title is-5" style="color: blue;">MPC</h2>
+              <video controls autoplay muted preload loop>
+                <source src="static/videos/simulation/mpc_rough.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column">
+              <h2 class="title is-5" style="color: rgb(54, 228, 54);">IFM(SR)</h2>
+              <video controls autoplay muted preload loop>
+                <source src="static/videos/simulation/IFM_rough.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <p class="has-text-justified">
+            In comparison to the expert MPC, the <strong>IFM</strong> controller demonstrates robust traversal of terrains, even in the presence of unexpected foot-trapping slopes.  
+          </p>
+        </div>
+  
+        <div row>
+          <div class="columns is-vcentered has-text-centered is-full-width">
+            <div class="column">
+              <h2 class="title is-5" style="color: blue;">MPC</h2>
+              <video controls autoplay muted preload loop>
+                <source src="static/videos/simulation/mpc_slip.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column">
+              <h2 class="title is-5" style="color: rgb(54, 228, 54);">IFM(SR)</h2>
+              <video controls autoplay muted preload loop>
+                <source src="static/videos/simulation/IFM_slip.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <p class="has-text-justified">
+            Since <strong>IFM</strong> policy doesn't rely on Raibert's heuristic foothold selection, 
+            it can maintain stability
+            even when the foot slips significantly, whereas our expert policy loses balance and falls.
+          </p>
+        </div>
+
+        <div row>
+          <div class="columns is-vcentered has-text-centered is-full-width">
+            <div class="column">
+              <h2 class="title is-5" style="color: blue;">MPC</h2>
+              <video controls autoplay muted preload loop>
+                <source src="static/videos/simulation/mpc_conveyor.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column">
+              <h2 class="title is-5" style="color: rgb(54, 228, 54);">IFM(SR)</h2>
+              <video controls autoplay muted preload loop>
+                <source src="static/videos/simulation/IFM_conveyor.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <p class="has-text-justified">
+            Even when moving terrain changes the stance legs' positions relative to robot's body, 
+            making heuristic-based foothold selection even harder, 
+            <strong>IFM</strong> policy can recover from such an unexpected footstep.
+          </p>
+        </div>
+  
+      </div>
+    </div>
+    <!--/ videos. -->
+  </div>
+</section>
+<!-- /simulation demo -->  
+
+<!-- hardware experiment -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-two-thirds">
+        <h1 class="title is-3">Hardware Experiments</h1>
+        <p class="has-text-justified">
+          We have conducted hardware experiments using five different baselines and demonstrated 
+          that the <strong>IFM</strong> policy consistently outperforms its baselines 
+          in several key aspects, including command tracking, robustness, energy efficiency, and motion symmetry. 
+          In the following section, we provide sample motion videos showcasing command tracking. 
+          These videos illustrate how <strong>IFM</strong> can better perform in hardware motion, even when compared to the WBIC controller. 
+          <strong>Turn your sound on!</strong> to experience the distinct advantages of <strong>IFM</strong> - the sound of motors in action <br>
+          
+        </p>
+      </div>
+    </div>       
+    <div class="tabs-widget">
+    <!-- <div class="tabs is-toggle is-fullwidth"> -->
+      <div class="tabs is-centered">
+        <ul class="is-marginless">
+          <li class="is-active"><a>IFM(SR)</a></li>
+          <li><a>Vanilla RL(SR)</a></li>
+          <li><a>IFM(CR)</a></li>
+          <li><a>Vanilla RL(CR)</a></li>
+        </ul>
+      </div>
+    
+      <!-- videos. -->
+      <div class="tabs-content">
+        <div>          
+          <div class="column">
+            <video controls autoplay preload loop>
+              <source src="static/videos/hardware/IFM(SR)/IFM_SR_command2_hw.mp4" type="video/mp4">
+            </video>      
+            <img src="static/images/speaker.png" alt="Overlay image" style="position: absolute;top: 145px; left: 850px; width: 10%; height: 10%; opacity: 1.0;">      
+          </div>          
+        </div>
+  
+        <div>          
+          <div class="column">
+            <video controls autoplay preload loop>
+              <source src="static/videos/hardware/RL(SR)/RL_SR_command2_hw.mp4" type="video/mp4">
+            </video>            
+            <img src="static/images/speaker.png" alt="Overlay image" style="position: absolute;top: 145px; left: 850px; width: 10%; height: 10%; opacity: 1.0;">      
+          </div>          
+        </div>
+
+        <div>          
+          <div class="column">
+            <video controls autoplay preload loop>
+              <source src="static/videos/hardware/IFM(CR)/IFM_CR_command_hw.mp4" type="video/mp4">
+            </video>            
+            <img src="static/images/speaker.png" alt="Overlay image" style="position: absolute;top: 145px; left: 850px; width: 10%; height: 10%; opacity: 1.0;">      
+          </div>          
+        </div>
+
+        <div>          
+          <div class="column">
+            <video controls autoplay preload loop>
+              <source src="static/videos/hardware/RL(CR)/RL_CR_command_hw.mp4" type="video/mp4">
+            </video>            
+            <img src="static/images/speaker.png" alt="Overlay image" style="position: absolute;top: 145px; left: 850px; width: 10%; height: 10%; opacity: 1.0;">      
+          </div>          
+        </div>
+  
+      </div>
+    </div>
+    <!--/ videos. -->
+  </div>
+</section>
+<!-- /hardware experiment -->  
+
+<!-- hardware compilation -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-two-thirds">
+        <h1 class="title is-3">Hardware Compilation</h1>
+        <p>
+          This section includes all the hardware experiments featured in the paper. <br>
+          Please note that a few videos had to be omitted due to recording issues.  <br>
+          <strong>Don't forget to turn on the sound!</strong>
+        </p>
+      </div>
+    </div>        
+    <div class="tabs-widget">
+    <!-- <div class="tabs is-toggle is-fullwidth"> -->
+      <div class="tabs is-centered">
+        <ul class="is-marginless">
+          <li class="is-active"><a>MPC</a></li>
+          <li><a>DAgger</a></li>
+          <li><a>IFM(SR)</a></li>
+          <li><a>Vanilla RL(SR)</a></li>
+          <li><a>IFM(CR)</a></li>
+          <li><a>Vanilla RL(CR)</a></li>
+        </ul>
+      </div>
+    
+      <!-- videos. -->
+      <div class="tabs-content">
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="item item-mpc-command has-text-centered column">            
+              <p>Command Tracking</p>            
+              <video controls autoplay preload loop>
+                <source src="static/videos/hardware/MPC/MPC_command_hw.mp4" type="video/mp4">       
+              </video>
+          </div>          
+          <div class="item item-mpc-slip has-text-centered">
+            <p>Slip Test(fail)</p>
+            <video controls autoplay preload loop>
+              <source src="static/videos/hardware/MPC/MPC_slip_hw.mp4" type="video/mp4">
+            </video>          
+          </div>        
+          <div class="item item-mpc-step has-text-centered">
+            <p>Step Test(5cm fail)</p>
+            <video controls autoplay preload loop>
+              <source src="static/videos/hardware/MPC/MPC_step_5cm_hw.mp4" type="video/mp4">
+            </video>          
+          </div>            
+        </div>
+
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="item item-DAgger-command has-text-centered">            
+              <p>Command Tracking</p>            
+              <video controls autoplay preload loop>
+                <source src="static/videos/hardware/DAgger/DAgger_command_hw.mp4" type="video/mp4">
+              </video>                          
+          </div>                 
+          <div class="item item-DAgger-slip has-text-centered">
+            <p>Slip Test(fail)</p>
+            <video controls autoplay preload loop>
+              <source src="static/videos/hardware/DAgger/DAgger_slip_f_hw.mp4" type="video/mp4">
+            </video>          
+          </div>        
+          <div class="item item-DAgger-step has-text-centered">
+            <p>Step Test(5cm fail)</p>
+            <video controls autoplay preload loop>
+              <source src="static/videos/hardware/DAgger/DAgger_step_5cm_hw.mp4" type="video/mp4">
+            </video>          
+          </div>            
+        </div>
+
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="item item-IFM(SR)-command has-text-centered">            
+              <p>Command Tracking</p>            
+              <video controls autoplay preload loop>
+                <source src="static/videos/hardware/IFM(SR)/IFM_SR_command1_hw.mp4" type="video/mp4">
+              </video>                          
+          </div>                 
+          <div class="item item-IFM(SR)-slip has-text-centered">
+            <p>Slip Test(success)</p>
+            <video controls autoplay preload loop>
+              <source src="static/videos/hardware/IFM(SR)/IFM_SR_slip_s_hw.mp4" type="video/mp4">
+            </video>          
+          </div>        
+          <div class="item item-IFM(SR)-step has-text-centered">
+            <p>Step Test(5cm success)</p>
+            <video controls autoplay preload loop>
+              <source src="static/videos/hardware/IFM(SR)/IFM_SR_step_5cm_s_hw.mp4" type="video/mp4">
+            </video>          
+          </div>
+          <div class="item item-IFM(SR)-step has-text-centered">
+            <p>Step Test(7.5cm success)</p>
+            <video controls autoplay preload loop>
+              <source src="static/videos/hardware/IFM(SR)/IFM_SR_step_75cm_s_hw.mp4" type="video/mp4">
+            </video>          
+          </div>
+          <div class="item item-IFM(SR)-step has-text-centered">
+            <p>Step Test(7.5cm fail)</p>
+            <video controls autoplay preload loop>
+              <source src="static/videos/hardware/IFM(SR)/IFM_SR_step_75cm_fail_hw.mp4" type="video/mp4">
+            </video>          
+          </div>
+        </div>
+
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="item item-dagger-command has-text-centered">            
+              <p>Command Tracking</p>            
+              <video controls autoplay preload loop>
+                <source src="static/videos/hardware/RL(SR)/RL_SR_command1_hw.mp4" type="video/mp4">
+              </video>                          
+          </div>                 
+          <div class="item item-RL(SR)-slip has-text-centered">
+            <p>Slip Test(success)</p>
+            <video controls autoplay preload loop>
+              <source src="static/videos/hardware/RL(SR)/RL_SR_slip_s_hw.mp4" type="video/mp4">
+            </video>          
+          </div>        
+          <div class="item item-RL(SR)-step has-text-centered">
+            <p>Step Test(5cm success)</p>
+            <video controls autoplay preload loop>
+              <source src="static/videos/hardware/RL(SR)/RL_SR_step_5cm_hw.mp4" type="video/mp4">
+            </video>          
+          </div>
+          <div class="item item-RL(SR)-step has-text-centered">
+            <p>Step Test(7.5cm fail)</p>
+            <video controls autoplay preload loop>
+              <source src="static/videos/hardware/RL(SR)/RL_SR_step_75cm_f_hw.mp4" type="video/mp4">
+            </video>          
+          </div>
+        </div>
+
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="item item-IFM(CR)-command has-text-centered">            
+              <p>Command Tracking</p>            
+              <video controls autoplay preload loop>
+                <source src="static/videos/hardware/IFM(CR)/IFM_CR_command_hw.mp4" type="video/mp4">
+              </video>                          
+          </div>                 
+          <div class="item item-IFM(CR)-slip has-text-centered">
+            <p>Slip Test(success)</p>
+            <video controls autoplay preload loop>
+              <source src="static/videos/hardware/IFM(CR)/IFM_CR_slip_s_hw.mp4" type="video/mp4">
+            </video>          
+          </div>        
+          <div class="item item-IFM(CR)-step has-text-centered">
+            <p>Step Test(7.5cm success)</p>
+            <video controls autoplay preload loop>
+              <source src="static/videos/hardware/IFM(CR)/IFM_CR_step_75cm_s_hw.mp4" type="video/mp4">
+            </video>          
+          </div>
+        </div>
+
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="item item-RL(CR)-command has-text-centered">            
+              <p>Command Tracking</p>            
+              <video controls autoplay preload loop>
+                <source src="static/videos/hardware/RL(CR)/RL_CR_command_hw.mp4" type="video/mp4">
+              </video>                          
+          </div>                     
+          <div class="item item-RL(CR)-step has-text-centered">
+            <p>Step Test(7.5cm success)</p>
+            <video controls autoplay preload loop>
+              <source src="static/videos/hardware/RL(CR)/RL_CR_step_75cm_s_hw.mp4" type="video/mp4">
+            </video>          
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!--/ videos. -->
+  </div>
+</section>
+<!-- /hardware experiment -->  
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@ARTICLE{10268037,
+      author={Youm, Donghoon and Jung, Hyunyoung and Kim, Hyeongjun and Hwangbo, Jemin and Park, Hae-Won and Ha, Sehoon},
+      journal={IEEE Robotics and Automation Letters}, 
+      title={Imitating and Finetuning Model Predictive Control for Robust and Symmetric Quadrupedal Locomotion}, 
+      year={2023},
+      volume={},
+      number={},
+      pages={1-8},
+      doi={10.1109/LRA.2023.3320827}
+    }</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website has been modified from <a href="https://camp-nerf.github.io/"> CamP</a> and 
+            <a href="https://github.com/nerfies/nerfies.github.io"> Nerfies</a>. <br>
+            Last update: Oct.2023
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
