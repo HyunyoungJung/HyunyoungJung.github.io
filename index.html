@@ -38,7 +38,7 @@
                   Hyunyoung Jung
                 </p>
                 <p>I am a second-year Master student at <a href="https://www.gatech.edu/">Georgia Tech</a>, major in Electrical and Computer Engineering.                
-                  I am currently being advised by <a href="https://faculty.cc.gatech.edu/~sha9/">Dr. Sehoon ha</a> and <a href="https://www.dynamicrobot.kaist.ac.kr/">Dr. Hae-Won Park</a>.
+                  I am currently being advised by <a href="https://faculty.cc.gatech.edu/~sha9/">Dr. Sehoon Ha</a> and <a href="https://www.dynamicrobot.kaist.ac.kr/">Dr. Hae-Won Park</a>.
                   <strong>Caution!</strong> This homepage is currently under construction.
                 </p>
                 <p style="text-align:center">
@@ -113,6 +113,51 @@
           <p></p>
           <p>
             We propose a learning framework that can bridge between model-based and learning approaches for legged robot control. by imitating expert model predictive control (MPC) and finetuning the pre-trained policy.
+          </p>
+        </td>
+      </tr>
+      
+      <tr onmouseout="crossloco_stop()" onmouseover="crossloco_start()">
+        <td style="padding:20px;width:25%;vertical-align:middle">
+          <div class="one">
+            <div class="two" id='crossloco_image'><video  width=100% height=100% muted autoplay loop>
+            <source src="project_teasers/crossloco/teaser.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+            </video></div>
+            <img src='project_teasers/crossloco/teaser.png' width="160">
+          </div>
+          <script type="text/javascript">
+            function crossloco_start() {
+              document.getElementById('crossloco_image').style.opacity = "1";
+            }
+
+            function crossloco_stop() {
+              document.getElementById('crossloco_image').style.opacity = "0";
+            }
+            ifm_stop()
+          </script>
+        </td>
+        <td style="padding:20px;width:75%;vertical-align:middle">
+          <a href="projects/crossloco/crossloco.html">
+            <span class="papertitle">CrossLoco: Human Motion Driven Control of Legged Robots via Guided Unsupervised Reinforcement Learning</span>
+          </a>
+          <br>
+          <a href="https://easypapersniper.github.io/">Tianyu Li</a>,
+          <strong>Hyunyoung Jung</strong>,          
+          <a href="https://sites.gatech.edu/matthew-gombolay/">Matthew Gombolay</a>, 
+          <a href="https://ce.gatech.edu/directory/person/yong-kwon-cho">Yong Kwon Cho</a>,
+          <a href="https://faculty.cc.gatech.edu/~sha9/">Sehooon Ha</a>,
+          <br>
+          <em>Under review</em>, 2023
+          <br>
+          <a href="projects/crossloco/crossloco.html">project page</a>
+          /
+          <a href="https://youtu.be/dBM2sTUcO-I">video</a>
+          /
+          <a href="https://arxiv.org/abs/2309.17046">arXiv</a>
+          <p></p>
+          <p>
+            we introduce a guided unsupervised reinforcement learning framework that simultaneously learns robot skills and their correspondence to human motions.
           </p>
         </td>
       </tr>
