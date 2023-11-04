@@ -37,14 +37,13 @@
                 <p class="name" style="text-align: center;">
                   Hyunyoung Jung
                 </p>
-                <p>I am a second-year Master student at <a href="https://www.gatech.edu/">Georgia Tech</a>, major in Electrical and Computer Engineering.                
-                  I am currently being advised by <a href="https://faculty.cc.gatech.edu/~sha9/">Dr. Sehoon Ha</a> and closely working with <a href="https://www.dynamicrobot.kaist.ac.kr/">Dr. Hae-Won Park</a>.
-                  
-                  <strong>Caution!</strong> This homepage is currently under construction.
+                <p>I am a second-year Master's student at <a href="https://www.gatech.edu/">Georgia Institute of Technology</a>, major in Electrical and Computer Engineering.                
+                  I am currently being advised by <a href="https://faculty.cc.gatech.edu/~sha9/">Dr. Sehoon Ha</a> and closely working with <a href="https://www.dynamicrobot.kaist.ac.kr/">Dr. Hae-Won Park</a>. <br>
+                  I received my Bachelor's degree at Seoul National University where I majored in Mechanical Engineering and Computer Science and Engineering.
                 </p>
                 <p style="text-align:center">
                   <a href="mailto:hjung331@gatech.edu">Email</a> &nbsp;/&nbsp;
-                  <a href="data/hyunyoung.jpg">CV</a> &nbsp;/&nbsp;
+                  <a href="cv.pdf">CV</a> &nbsp;/&nbsp;
                   <!-- <a href="data/JonBarron-bio.txt">Bio</a> &nbsp;/&nbsp; -->
                   <a href="https://scholar.google.com/citations?user=xR0ESPUAAAAJ&hl=ko&citsig=AD-1fHZJa2SAuKKkTInL3DjXIfy9">Google Scholar</a> &nbsp;/&nbsp;
                   <a href="https://twitter.com/HyunyoungJung5">Twitter</a> &nbsp;/&nbsp;
@@ -64,15 +63,29 @@
               <td style="padding:20px;width:100%;vertical-align:middle">
                 <h2>Research</h2>
                 <p>
-                  My research interest lies in the recent learning-based approach for legged robot control, especially by leveraging the classical control method. I am also interested in human motion-driven control by resolving correspondence between different morphology between humans and robots.
+                  My research goal is to develop learning-based control algorithms that enable robust and agile locomotion and interactive behaviors within human environments. 
+                  For this, I am currently working on research in legged robot locomotion, employing an approach that integrates learning-based and classical control methods. 
+                  Furthermore, I am exploring the possibilities of human motion-driven control by establishing correspondence between humans and robots.
                   <!-- Representative papers are <span class="highlight">highlighted</span>. -->
                 </p>
               </td>
             </tr>
           </tbody></table>
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+
+          <table>
+            <tbody>
+            <tr>
+              <td style="padding:20px;width:100%;vertical-align:middle; line-height:10px">
+                    <h2>Publications and Preprints</h2><br>(*: equal contribution)
+                </td>
+            </tr>
+            </tbody>
+          </table>
+
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;margin-top:-20px"><tbody>
+            
             <tr onmouseout="crossloco_stop()" onmouseover="crossloco_start()">
-              <td style="padding:20px;width:25%;vertical-align:middle">
+              <td style="padding:20px;width:25%;vertical-align:top">
                 <div class="one">
                   <div class="two" id='crossloco_image'><video  width=100% height=100% muted autoplay loop>
                   <source src="project_teasers/crossloco/teaser.mp4" type="video/mp4">
@@ -91,7 +104,7 @@
                   crossloco_stop()
                 </script>
               </td>
-              <td style="padding:20px;width:75%;vertical-align:middle">
+              <td style="padding:20px;width:75%;vertical-align:top">
                 <a href="projects/crossloco/crossloco.html">
                   <span class="papertitle">CrossLoco: Human Motion Driven Control of Legged Robots via Guided Unsupervised Reinforcement Learning</span>
                 </a>
@@ -102,7 +115,7 @@
                 <a href="https://ce.gatech.edu/directory/person/yong-kwon-cho">Yong Kwon Cho</a>,
                 <a href="https://faculty.cc.gatech.edu/~sha9/">Sehoon Ha</a>
                 <br>
-                <em>Under review</em>, 2023
+                <em>Under Review</em>, 2023
                 <br>
                 <a href="projects/crossloco/crossloco.html">project page</a>
                 /
@@ -116,77 +129,191 @@
               </td>
             </tr>
             
-      <tr onmouseout="ifm_stop()" onmouseover="ifm_start()">
-        <td style="padding:20px;width:25%;vertical-align:middle">
-          <div class="one">
-            <div class="two" id='ifm_image'><video  width=100% height=100% muted autoplay loop>
-            <source src="project_teasers/IFM_teaser/teaser.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-            </video></div>
-            <img src='project_teasers/IFM_teaser/IFM_teaser.png' width="160">
-          </div>
-          <script type="text/javascript">
-            function ifm_start() {
-              document.getElementById('ifm_image').style.opacity = "1";
-            }
+            <tr onmouseout="ifm_stop()" onmouseover="ifm_start()">
+              <td style="padding:20px;width:25%;vertical-align:top">
+                <div class="one">
+                  <div class="two" id='ifm_image'><video  width=100% height=100% muted autoplay loop>
+                  <source src="project_teasers/IFM_teaser/teaser.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                  </video></div>
+                  <img src='project_teasers/IFM_teaser/IFM_teaser.png' width="160">
+                </div>
+                <script type="text/javascript">
+                  function ifm_start() {
+                    document.getElementById('ifm_image').style.opacity = "1";
+                  }
 
-            function ifm_stop() {
-              document.getElementById('ifm_image').style.opacity = "0";
-            }
-            ifm_stop()
-          </script>
-        </td>
-        <td style="padding:20px;width:75%;vertical-align:middle">
-          <a href="projects/ifm/ifm.html">
-            <span class="papertitle">Imitating and Finetuning Model Predictive Control for Robust and Symmetric Quadrupedal Locomotion</span>
-          </a>
-          <br>
-          Donghoon Youm*,
-          <strong>Hyunyoung Jung*</strong>,
-          Hyeongjun Kim,
-          <a href="https://www.railab.kaist.ac.kr/">Jemin Hwangbo</a>,  <br>
-          <a href="https://www.dynamicrobot.kaist.ac.kr/">Hae-Won Park</a>,
-          <a href="https://faculty.cc.gatech.edu/~sha9/">Sehoon Ha</a>
-          <br>
-          <em>RA-L</em>, 2023
-          <br>
-          <a href="projects/ifm/ifm.html">project page</a>
-          /
-          <a href="https://youtu.be/KmL7mlGBkys">video</a>
-          /
-          <a href="https://ieeexplore.ieee.org/abstract/document/10268037">arXiv</a>
-          <p></p>
-          <p>
-            We propose a learning framework that can bridge between model-based and learning approaches for legged robot control by imitating expert model predictive control (MPC) and finetuning the pre-trained policy.
-          </p>
-        </td>
-      </tr>
-      
-      
-
-          </tbody></table>
-
-          
-          <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20"><tbody>
-            <tr>
-              <td>
-                <h2>Miscellanea</h2>
+                  function ifm_stop() {
+                    document.getElementById('ifm_image').style.opacity = "0";
+                  }
+                  ifm_stop()
+                </script>
+              </td>
+              <td style="padding:20px;width:75%;vertical-align:top">
+                <a href="projects/ifm/ifm.html">
+                  <span class="papertitle">Imitating and Finetuning Model Predictive Control for Robust and Symmetric Quadrupedal Locomotion</span>
+                </a>
+                <br>
+                Donghoon Youm*,
+                <strong>Hyunyoung Jung*</strong>,
+                Hyeongjun Kim,
+                <a href="https://www.railab.kaist.ac.kr/">Jemin Hwangbo</a>,  <br>
+                <a href="https://www.dynamicrobot.kaist.ac.kr/">Hae-Won Park</a>,
+                <a href="https://faculty.cc.gatech.edu/~sha9/">Sehoon Ha</a>
+                <br>
+                <em>RA-L</em>, 2023
+                <br>
+                <a href="projects/ifm/ifm.html">project page</a>
+                /
+                <a href="https://youtu.be/KmL7mlGBkys">video</a>
+                /
+                <a href="https://ieeexplore.ieee.org/abstract/document/10268037">arXiv</a>
+                <p></p>
+                <p>
+                  We propose a learning framework that can bridge between model-based and learning approaches for legged robot control by imitating expert model predictive control (MPC) and finetuning the pre-trained policy with reinforcement learning.
+                </p>
               </td>
             </tr>
-          </tbody></table>
-          <table width="100%" align="center" border="0" cellpadding="20"><tbody>
-            
+      
+      
 
-            <!-- <tr>
-              <td style="padding:20px;width:25%;vertical-align:middle">
-                <img src="images/cs188.jpg" alt="cs188">
+          </tbody></table>
+
+          <table>
+            <tbody>
+            <tr>
+              <td style="padding:20px;width:100%;vertical-align:middle; line-height:10px">
+                    <h2>Ongoing Projects </h2><br>
+                </td>
+            </tr>
+            </tbody>
+          </table>
+          
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;margin-top:-25px"><tbody>
+            
+            <tr onmouseout="digit_ifm_stop()" onmouseover="digit_ifm_start()">
+              <td style="padding:20px;width:25%;vertical-align:top">
+                <div class="one">
+                  <div class="two" id='digit_ifm_image'><video  width=100% height=100% muted autoplay loop>
+                  <source src="project_teasers/digit_ifm/teaser.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                  </video></div>
+                  <img src='project_teasers/digit_ifm/teaser.png' width="160">
+                </div>
+                <script type="text/javascript">
+                  function digit_ifm_start() {
+                    document.getElementById('digit_ifm_image').style.opacity = "1";
+                  }
+      
+                  function digit_ifm_stop() {
+                    document.getElementById('digit_ifm_image').style.opacity = "0";
+                  }
+                  digit_ifm_stop()
+                </script>
               </td>
-              <td width="75%" valign="center">
-                <a href="http://inst.eecs.berkeley.edu/~cs188/sp11/announcements.html">Graduate Student Instructor, CS188 Spring 2011</a>
+
+              <td style="padding:20px;width:75%;vertical-align:top">
+                <span class="papertitle">Humanoid locomotion with learning-based method leveraging model-based control</span>
+                <p>
+                  Training the locomotion of full-sized humanoids is a challenging task and less investigated in a learning-based control society compared to quadrupedal robot locomotion. 
+                  Unlike quadrupeds, the humanoids have more unstable walking structures making it hard to use a straightforward model-free reinforcement learning approach.
+                  <br>
+                  In this project, we address this issue by utilizing our established framework, IFM, to enhance the robustness of humanoid robot locomotion, specifically solving instability in the reinforcement learning stage.
+                </p>
               </td>
-            </tr> -->
+            </tr>
+            </tbody>
+            </table>
+
+          <table>
+            <tbody>
+            <tr>
+              <td style="padding:20px;width:100%;vertical-align:middle; line-height:10px">
+                    <h2>Education</h2><br>
+                </td>
+            </tr>
+            </tbody>
+          </table>
+
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto; margin-top:-25px"><tbody>
+            <tr onmouseout="alignerf_stop()" onmouseover="alignerf_start()">
+              <td style="padding:0px 10px 20px 23px;vertical-align:top">
+                <h3 style="line-height: 0.5;" > Georgia Institute of Technology </h3>
+                <em>M.S in Electrical and Computer Engineering</em>
+              </td>
+              <td style="padding:10px;width:35%;vertical-align:top">
+                <em>Aug. 2022 - Present</em>
+              </td>
+            </tr>
+      
+            <tr onmouseout="alignerf_stop()" onmouseover="alignerf_start()">
+              <td style="padding:0px 10px 20px 23px;width:65%;vertical-align:top">
+                <h3 style="line-height: 0.5;"> Seoul National University </h3>
+                <em>B.S. in Mechanical Engineering</em>
+                <br>
+                <em>B.S. in Computer Science and Engineering</em>
+              </td>
+              <td style="padding:10px;width:35%;vertical-align:top">
+                <em>Mar. 2016 - Aug. 2022</em>
+              </td>
+            </tr>
+
+      
+          </tbody></table>
+
+          <table>
+            <tbody>
+            <tr>
+              <td style="padding:20px;width:100%;vertical-align:middle; line-height:10px">
+                    <h2>Work and Teaching Experiences</h2><br>
+                </td>
+            </tr>
+            </tbody>
+          </table>
+
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto; margin-top:-25px"><tbody>
+            <tr onmouseout="alignerf_stop()" onmouseover="alignerf_start()">
+              <td style="padding:0px 10px 20px 23px;width:65%;vertical-align:top">
+                <h3 style="line-height: 0.5;"> CS 3451 Computer Graphics </h3>
+                <em>Teaching Asistant</em>
+                <br>
+                <em>Georgia Institute of Technology</em>
+              </td>
+              <td style="padding:10px;width:35%;vertical-align:top">
+                <em>Apr. 2021 - Dec. 2021</em>
+              </td>
+            </tr>
+
+            <tr onmouseout="alignerf_stop()" onmouseover="alignerf_start()">
+              <td style="padding:0px 10px 20px 23px;width:65%;vertical-align:top">
+                <h3 style="line-height: 0.5;"> Saige Research </h3>
+                <em>Research Intern</em>
+              </td>
+              <td style="padding:10px;width:35%;vertical-align:top">
+                <em>Apr. 2021 - Dec. 2021</em>
+              </td>
+            </tr>
+      
+            <tr onmouseout="alignerf_stop()" onmouseover="alignerf_start()">
+              <td style="padding:0px 10px 20px 23px;width:65%;vertical-align:top">
+                <h3 style="line-height: 0.5;"> Samsung Electronics </h3>
+                <em>Student Intern</em>
+              </td>
+              <td style="padding:10px;width:35%;vertical-align:top">
+                <em>Jan. 2021 - Feb. 2021</em>
+              </td>
+            </tr>
+
+      
+          </tbody></table>
             
           </tbody></table>
+      
+    
+
+
+
+
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
             <tr>
               <td style="padding:0px">

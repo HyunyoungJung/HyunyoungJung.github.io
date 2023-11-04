@@ -105,14 +105,14 @@ h2 {
 .profile-photo {
   width: 100%;
   max-width: 100%;
-  border-radius: 50%;
+  border-radius: 60%;
 }
 
 .name {
   padding-top: 20px;
   margin: 0;
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 32px;
+  font-size: 42px;
 }
 
 .one {
