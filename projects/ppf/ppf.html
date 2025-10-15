@@ -1,349 +1,587 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="description"
-        content="PPF: Pre-training and Preservative Fine-tuning of Humanoid Locomotion via Model-Assumption-based Regularization">
-  <meta name="keywords" content="humanoid, reinforcement learning, control, legged robot, reinforcement learning">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PPF: Pre-training and Preservative Fine-tuning of Humanoid Locomotion via Model-Assumption-based Regularization</title>
+	<head>
+		<title>PPF</title>
+		<meta charset="utf-8" />
+		 <meta name="viewport" content="width=1000">
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="icon" type="image/png" sizes="32x32" href="./images/logo.png">
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-LS6L6LB7RX"></script>
+		<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
 
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+		gtag('config', 'G-LS6L6LB7RX');
+		</script>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
-</head>
-<body>
-  <!-- add this when related work is done (e.g. digit ifm) -->
-<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://faculty.cc.gatech.edu/~sha9/">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
-      </a>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More Research
-        </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://hypernerf.github.io">
-            HyperNeRF
-          </a>
-          <a class="navbar-item" href="https://nerfies.github.io">
-            Nerfies
-          </a>
-          <a class="navbar-item" href="https://latentfusion.github.io">
-            LatentFusion
-          </a>
-          <a class="navbar-item" href="https://photoshape.github.io">
-            PhotoShape
-          </a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</nav> -->
+		<meta property="og:url"           content="https://ppf.github.io" />
+	    <meta property="og:type"          content="website" />
+	    <meta property="og:title"         content="Pre-training and Preservative Fine-tuning of Humanoid Locomotion via Model-Assumption-based Regularization" />
+	    <meta property="og:description"   content="" />
+	    
+		<link rel="stylesheet"
+			href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+		<link rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">PPF: Pre-training and Preservative Fine-tuning of Humanoid Locomotion via Model-Assumption-based Regularization</h1>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="https://hyunyoungjung.github.io/">Hyunyoung Jung*</a><sup>1</sup>,</span>
-            <span class="author-block">
-              <a href="https://guzhaoyuan.com/">Zhaoyuan Gu*</a><sup>1</sup>,</span>
-            <span class="author-block">
-              <a href="https://www.me.gatech.edu/faculty/zhao">Ye Zhao</a><sup>1</sup>, 
-            </span>
-            <span class="author-block">
-              <a href="https://www.dynamicrobot.kaist.ac.kr/">Hae-Won Park</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://faculty.cc.gatech.edu/~sha9/">Sehooon Ha</a><sup>1</sup>
-            </span>
-          </div>
-
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>Georgia Institute of Technology,</span>
-            <span class="author-block"><sup>2</sup>Korea Advanced Institute of Science and Technology (KAIST)</span>
-            <br>
-            <span class="author-block"><sup>*</sup>These two authors contributed equally</span>
-          </div>
-
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              <!-- PDF Link. -->
-              <!-- <span class="link-block">
-                <a href="https://ieeexplore.ieee.org/abstract/document/10268037"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>RA-L</span>
-                </a>
-              </span> -->
-              <span class="link-block">
-                <a href="https://arxiv.org/abs/2504.09833"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
-              <!-- Video Link. -->
-              <span class="link-block">
-                <a href="https://youtu.be/xwyAuPgVbeA"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-youtube"></i>
-                  </span>
-                  <span>Video</span>
-                </a>
-              </span>
-              </span>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <video id="teaser" autoplay muted playsinline webkit-playsinline loop preload="auto"
-        style="width:100%;height:auto;max-height:70vh;display:block"
-        poster="data:image/gif;base64,R0lGODlhAQABAAAAACw=">
-        <source src="./static/videos/teaser.mp4" type="video/mp4">
-      </video>
-      <script>
-        (function () {
-          const v = document.getElementById('teaser');
-          if (!v) return;
-
-          v.defaultMuted = true;
-          v.muted = true;
-          v.autoplay = true;
-          v.setAttribute('muted', '');
-          v.setAttribute('playsinline', '');
-          v.setAttribute('webkit-playsinline', '');
-
-          const tryPlay = () =>
-            v.play().catch(() => v.setAttribute('controls', ''));
-
-          // Retry a few times while the layout/buffer settles.
-          let attempts = 0;
-          const tick = () => {
-            if (v.readyState >= 2) {           // HAVE_CURRENT_DATA
-              tryPlay();
-            } else if (attempts++ < 15) {
-              setTimeout(tick, 150);
-            } else {
-              v.setAttribute('controls', '');  // graceful fallback
-            }
-          };
-
-          // Kick a fresh load to avoid stale initial state.
-          v.load();
-          // Fire at multiple readiness milestones (different browsers fire different ones first).
-          ['loadedmetadata','loadeddata','canplay','canplaythrough'].forEach(evt =>
-            v.addEventListener(evt, tryPlay, { once: true })
-          );
-          // Also run our small retry loop.
-          tick();
-
-          // Last-ditch fallback: first user gesture starts it.
-          const onInteract = () => { tryPlay(); window.removeEventListener('pointerdown', onInteract); };
-          window.addEventListener('pointerdown', onInteract, { once: true });
-
-          // If the tab was backgrounded at first paint, try again when visible.
-          document.addEventListener('visibilitychange', () => {
-            if (!document.hidden && v.paused) tryPlay();
-          });
-        })();
-      </script>
-    </div>
-  </div>
-</section>
+	</head>
+	<body id="top">
 
 
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            Humanoid locomotion is a challenging task due to its inherent complexity and high-dimensional dynamics, as well as the need to adapt to diverse and unpredictable environments. In this work, we introduce a novel learning framework for effectively training a humanoid locomotion policy that imitates the behavior of a model-based controller while extending its capabilities to handle more complex locomotion tasks, such as more challenging terrain and higher velocity commands. Our framework consists of three key components: pre-training through imitation of the model-based controller, fine-tuning via reinforcement learning, and model-assumption-based regularization (MAR) during fine-tuning. In particular, MAR aligns the policy with actions from the model-based controller only in states where the model assumption holds to prevent catastrophic forgetting. We evaluate the proposed framework through comprehensive simulation tests and hardware experiments on a full-size humanoid robot, Digit, demonstrating a forward speed of 1.5 m/s and robust locomotion across diverse terrains, including slippery, sloped, uneven, and sandy terrains.
-          </p>
+		<!-- Main -->
+			<div id="main" style="padding-bottom:1em; padding-top: 5em; width: 60em; max-width: 70em; margin-left: auto; margin-right: auto;">
+					<section id="four">
+						<h1 style="text-align: center; margin-bottom: 0; font-size: 200%; color: black;">PPF: <b style="font-weight: 900; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); font-size: 1.1em; color: black;">P</b>re-training and 
+							<b style="font-weight: 900; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); font-size: 1.1em; color: black;">P</b>reservative
+							<b style="font-weight: 900; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); font-size: 1.1em; color: black;">F</b>ine-tuning of Humanoid
+						</h1>
+						<h2 style="text-align: center; white-space: nowrap; color: black; font-size: 200%"> Locomotion via Model-Assumption-based Regularization</h2>
+						<h2 style="text-align: center; white-space: nowrap; font-size: 150%">RA-L 2025</h2>
 
-        </div>
-      </div>
-    </div>
-    <!--/ Abstract. -->
+						<div style="text-align: center; margin-top: 1em;">
+							<p style="font-size: 1.2em; margin-bottom: 0.5em; color: #1f4e8b;">
+								<a href="https://hyunyoungjung.github.io/" style="text-decoration: none !important; border-bottom: none !important;">Hyunyoung Jung</a><sup>*1</sup>, 
+								<a href="https://guzhaoyuan.com/" style="text-decoration: none !important; border-bottom: none !important;">Zhaoyuan Gu</a><sup>*1</sup>, 
+								<a href="https://www.me.gatech.edu/faculty/zhao" style="text-decoration: none !important; border-bottom: none !important;">Ye Zhao</a><sup>2</sup>, 
+								<a href="https://www.dynamicrobot.kaist.ac.kr/" style="text-decoration: none !important; border-bottom: none !important;">Hae-Won Park</a><sup>1</sup>, 
+								<a href="https://faculty.cc.gatech.edu/~sha9/" style="text-decoration: none !important; border-bottom: none !important;">Sehoon Ha</a><sup>1</sup>
+							</p>
+							<p style="font-size: 1.0em; color: #666; margin-bottom: 0.2em;">
+								<sup>1</sup>Georgia Institute of Technology <sup>2</sup>Korea Advanced Institute of Science and Technology (KAIST)
+							</p>
+							<p style="font-size: 0.8em; color: #888; margin-top: 0;">
+								<sup>*</sup> co-first authors
+							</p>
+						</div>
+						
+						<div style="text-align: center; margin-top: -1em;">
+							<!-- PDF/RA-L -->
+							<a href="https://ieeexplore.ieee.org/abstract/document/11155209"
+								style="display: inline-block; margin: 0.3em; padding: 0.6em 1.2em; border-radius: 25px; 
+										background: #333; color: #fff; text-decoration: none; font-size: 0.95em;">
+								<i class="fas fa-file-pdf"></i> RA-L
+							</a>
 
-  </div>
-</section>
+							<!-- arXiv -->
+							<a href="https://arxiv.org/abs/2504.09833"
+								style="display: inline-block; margin: 0.3em; padding: 0.6em 1.2em; border-radius: 25px; 
+										background: #333; color: #fff; text-decoration: none; font-size: 0.95em;">
+								<i class="ai ai-arxiv"></i> arXiv
+							</a>
 
+							<!-- Video -->
+							<a href="https://youtu.be/bmWyOg3qlHc"
+								style="display: inline-block; margin: 0.3em; padding: 0.6em 1.2em; border-radius: 25px; 
+										background: #c4302b; color: #fff; text-decoration: none; font-size: 0.95em;">
+								<i class="fab fa-youtube"></i> Video
+							</a>
+						</div>
+						<br>
 
-<!-- <section class="section">
-  <div class="container is-max-desktop">
+						<div class="box alt" style="margin-bottom: 2em;">
+							<div class="row 50% uniform" style="width: 100%;">
+								<div class="2u" style="font-size: 1em; line-height: 1.5em; text-align: center; width: 100%">
+									<span class="image fit" style="margin-bottom: 0.5em;">
+										<video controls autoplay loop muted playsinline style="width: 100%; border-radius: 10px;">
+											<source src="videos/supplementary_video_3.mp4" type="video/mp4">
+										</video>
+									</span>
+								</div>
+							</div>
+						</div>
 
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        
-        <h2 class="title is-3 has-text-centered">Learning Framework</h2>
-        
-        <div class="columns is-centered">          
-          <img id="learning-framework" src="static/images/method_overview.png" width="80%" 
-          style="padding-top: 70px; padding-bottom: 20px;">
-        </div>
-        <p class="has-text-justified">
-          A robot control policy utilizes human motions and sensory information 
-          to generate robot actions for interacting with the environment. 
-          The Robot2Human-Mapper is then used to reconstruct the input human motion pose from the robot's pose. 
-          Lastly, the Human2Robot-Mapper is used to reconstruct the robot pose from the reconstructed human pose. 
-          Both mappers are trained via supervised learning using the difference between the real and reconstructed poses.
-          These differences are also utilized for constructing a correspondence reward function to train the robot control policy using PPO.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>     -->
-<!-- simulation demo -->
-<!-- <section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-two-thirds">
-        <h1 class="title is-3">Motion Transfer Demo</h1>
-      </div>
-    </div>        
-    <div class="tabs-widget">
-      <div class="tabs is-centered">
-        <ul class="is-marginless">
-          <li class="is-active"><a>Dancing</a></li>
-          <li><a>Hopping</a></li>
-          <li><a>Running</a></li>
-        </ul>
-      </div>
-    
-      <div class="tabs-content">
-        <div row>
-          <div class="columns is-vcentered has-text-centered is-full-width">
-            <div class="column">
-              <h2 class="title is-5">Human Motion</h2>
-              <video controls autoplay muted preload loop>
-                <source src="static/videos/human_videos/h_motion_9.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="column">
-              <h2 class="title is-5">Robot Motion</h2>
-              <video controls autoplay muted preload loop>
-                <source src="static/videos/robot_videos/r_motion_9.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-
-        </div>
-
-        <div row>
-          <div class="columns is-vcentered has-text-centered is-full-width">
-            <div class="column">
-              <h2 class="title is-5" >Human Motion</h2>
-              <video controls autoplay muted preload loop>
-                <source src="static/videos/human_videos/h_motion_4.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="column">
-              <h2 class="title is-5">Robot Motion</h2>
-              <video controls autoplay muted preload loop>
-                <source src="static/videos/robot_videos/motion_4.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-
-        </div>
-
-        <div row>
-          <div class="columns is-vcentered has-text-centered is-full-width">
-            <div class="column">
-              <h2 class="title is-5">Human Motion</h2>
-              <video controls autoplay muted preload loop>
-                <source src="static/videos/human_videos/h_motion_10.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="column">
-              <h2 class="title is-5">Robot Motion</h2>
-              <video controls autoplay muted preload loop>
-                <source src="static/videos/robot_videos/r_motion_10.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-  
-      </div>
-    </div>
-  </div>
-</section> -->
-<!-- /simulation demo -->  
-
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code> Comming Soon!</code></pre>
-  </div>
-</section>
+						<hr>
 
 
-<footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            This website has been modified from <a href="https://camp-nerf.github.io/"> CamP</a> and 
-            <a href="https://github.com/nerfies/nerfies.github.io"> Nerfies</a>. <br>
-            Last update: Oct.2023
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
+						<h3 style="color: #1f4e8b;">🔑 Key idea</h3>
+						<p style="color: black;">
+							<p style="color: black;">Imitate the model-based controller (MBC) and then fine-tune with RL, while regularizing the policy with   <b style="color: #8B7000;"><a href="#method-overview" style="color: #8B7000; text-decoration: none;">Model-Assumption-based Regularization (MAR)</a> </b> in the fine-tuning stage to preserve the learned motion style and avoid forgetting.
+						</p>
+						<hr>
+						<h3 style="color: #1f4e8b;">Motivation 1</h3>
+						<p style="color: black;">
+							<p style="color: black;">
+								<a href="https://hyunyoungjung.github.io/projects/ifm/ifm.html" style="color: #8B7000; font-weight: bold; text-decoration: none;">
+									Earlier approach (IFM)
+								</a>
+								leads to <b style="color: #8B7000;">motion forgetting in humanoid</b> where the policy loses the pre-trained motion style from the MBC.</b>
+							</p>
 
-</body>
+							<div class="box alt" style="margin-bottom: 1em; margin-top: 1em;">
+								<div class="row 50% uniform" style="width: 100%;">
+									<div class="2u" style="font-size: 1em; line-height: 1.5em; text-align: center; width: 100%">
+										<span class="image fit" style="margin-bottom: 0.5em;">
+											<video controls autoplay loop muted playsinline style="width: 100%; border-radius: 10px;">
+												<source src="videos/motion_forgetting.mp4" type="video/mp4">
+											</video>
+										</span>
+										 Motion forgetting in IFM.
+									</div>
+								</div>
+							</div>
+
+
+						</p>						
+						<br>
+						<h3 style="color: #1f4e8b;">Motivation 2</h3>
+						<p style="color: black;">
+							<p style="color: black;">
+								While regularizing the policy with the MBC's action in the fine-tuning stage seems like a solution, <b style="color: #8B7000;">the MBC's guidance becomes unreliable when its underlying assumptions are violated.</b>
+							</p>
+
+							<div class="box alt" style="margin-bottom: 1em; margin-top: 1em;">
+								<div class="row 50% uniform" style="width: 100%;">
+									<div class="2u" style="font-size: 1em; line-height: 1.5em; text-align: center; width: 100%">
+										<span class="image fit" style="margin-bottom: 0.5em;">
+											<video controls autoplay loop muted playsinline style="width: 100%; border-radius: 10px;">
+												<source src="videos/mar_motivation.mp4" type="video/mp4">
+											</video>
+										</span>
+
+									</div>
+								</div>
+							</div>
+
+
+						</p>	
+
+						<hr>
+
+						<!-- <h3 style="color: #1f4e8b;">Method Overview</h3> -->
+						 <h3 id="method-overview" style="color: #1f4e8b;">Method Overview</h3>
+						
+						<!-- <br> -->
+						
+						<p style="color: black;">
+							We address this with <b style="color:#8B7000;">Model-Assumption-based Regularization (MAR)</b>: during fine-tuning, 
+							the policy is regularized with the MBC's action when the state aligns with the MBC's modeling assumptions, 
+							while the regularization weight is reduced in states where those assumptions are violated.
+						</p>
+
+						<div class="box alt" style="margin-bottom: 1em; margin-top: 1em;">
+							<div class="row 50% uniform" style="width: 100%;">
+								<div class="2u" style="font-size: 1em; line-height: 1.5em; text-align: center; width: 100%">
+									<span class="image fit" style="margin-bottom: 0.5em;">
+										<img src="images/mar.png" alt="Model-Assumption-based Regularization overview" style="width: 100%; border-radius: 10px;">
+									</span>
+									Overview of Model-Assumption-based Regularization (MAR).
+								</div>
+							</div>
+						</div>
+		
+						<hr>
+						
+						<h3 style="color: #1f4e8b;">Results</h3>
+						<p style="color: black;">
+							We design simulation tests and hardware experiments to investigate the following questions: 
+							<br>
+							(1) Can PPF learn an effective policy in the training environments?
+							<br>
+							(2) Can PPF show robust performance in sim-to-sim and sim-to-real transfer scenarios compared to the baseline methods?
+							<br>
+							(3) Can MAR dynamically adjust the sample weights based on the model-based assumption violation?
+						</p>
+
+						<h3 style="color: #1f4e8b;">Indoor Hardware Experiments</h3>
+						<div class="tabs-container" style="text-align: center; margin-bottom: 1em;">
+							<ul class="tabs-nav" style="list-style: none; padding: 0; margin: 0; display: inline-block; border: 1px solid #ccc; border-radius: 25px; overflow: hidden;">
+								<li class="tab-link active" data-tab="tab-1" style="display: inline-block; padding: 0.6em 1.2em; cursor: pointer; background: #333; color: #fff;">PPF</li>
+								<li class="tab-link" data-tab="tab-2" style="display: inline-block; padding: 0.6em 1.2em; cursor: pointer; background: #eee; color: #333;">MBC</li>
+								<li class="tab-link" data-tab="tab-3" style="display: inline-block; padding: 0.6em 1.2em; cursor: pointer; background: #eee; color: #333;">FullReg</li>
+								<li class="tab-link" data-tab="tab-4" style="display: inline-block; padding: 0.6em 1.2em; cursor: pointer; background: #eee; color: #333;">IFM</li>
+								<li class="tab-link" data-tab="tab-5" style="display: inline-block; padding: 0.6em 1.2em; cursor: pointer; background: #eee; color: #333;">PureRL</li>
+							</ul>
+						</div>
+
+						<div class="box alt" style="margin-bottom: 2em;">
+							<div id="tab-1" class="tab-content active" style="position: relative;">
+								<div class="video-slide">
+								<div class="row 50% uniform" style="width: 100%;">
+									<div class="2u" style="font-size: 1em; line-height: 1.5em; text-align: center; width: 100%">
+									<span class="image fit" style="margin-bottom: 0.5em;">
+										<video controls autoplay loop muted playsinline style="width: 100%; border-radius: 10px;">
+										<source src="videos/hw/ppf_speed.mp4" type="video/mp4">
+										</video>
+									</span>
+									PPF speed test
+									</div>
+								</div>
+								</div>
+								<div class="video-slide" style="display: none;">
+								<div class="row 50% uniform" style="width: 100%;">
+									<div class="2u" style="font-size: 1em; line-height: 1.5em; text-align: center; width: 100%">
+									<span class="image fit" style="margin-bottom: 0.5em;">
+										<video controls autoplay loop muted playsinline style="width: 100%; border-radius: 10px;">
+										<source src="videos/hw/ppf_slip_poppy.mp4" type="video/mp4">
+										</video>
+									</span>
+									PPF step and slip test (poppy seed)
+									</div>
+								</div>
+								</div>
+								<div class="video-slide" style="display: none;">
+								<div class="row 50% uniform" style="width: 100%;">
+									<div class="2u" style="font-size: 1em; line-height: 1.5em; text-align: center; width: 100%">
+									<span class="image fit" style="margin-bottom: 0.5em;">
+										<video controls autoplay loop muted playsinline style="width: 100%; border-radius: 10px;">
+										<source src="videos/hw/ppf_slip_olive.mp4" type="video/mp4">
+										</video>
+									</span>
+									PPF step and slip test (olive oil)
+									</div>
+								</div>
+								</div>
+								<a class="prev" onclick="plusSlides(-1, 'tab-1')" style="cursor: pointer; position: absolute; top: 50%; left: 0; transform: translateY(-50%); padding: 16px; color: white; font-weight: bold; font-size: 20px; background-color: rgba(0,0,0,0.3); border-radius: 0 3px 3px 0;">&#10094;</a>
+								<a class="next" onclick="plusSlides(1, 'tab-1')" style="cursor: pointer; position: absolute; top: 50%; right: 0; transform: translateY(-50%); padding: 16px; color: white; font-weight: bold; font-size: 20px; background-color: rgba(0,0,0,0.3); border-radius: 3px 0 0 3px;">&#10095;</a>
+							</div>
+
+							<div id="tab-2" class="tab-content" style="display: none; position: relative;">
+								<div class="video-slide">
+								<div class="row 50% uniform" style="width: 100%;">
+									<div class="2u" style="font-size: 1em; line-height: 1.5em; text-align: center; width: 100%">
+									<span class="image fit" style="margin-bottom: 0.5em;">
+										<video controls autoplay loop muted playsinline style="width: 100%; border-radius: 10px;">
+										<source src="videos/hw/mbc_speed.mp4" type="video/mp4">
+										</video>
+									</span>
+									MBC speed test
+									</div>
+								</div>
+								</div>
+								<div class="video-slide" style="display: none;">
+								<div class="row 50% uniform" style="width: 100%;">
+									<div class="2u" style="font-size: 1em; line-height: 1.5em; text-align: center; width: 100%">
+									<span class="image fit" style="margin-bottom: 0.5em;">
+										<video controls autoplay loop muted playsinline style="width: 100%; border-radius: 10px;">
+										<source src="videos/hw/mbc_sleep_poppy.mp4" type="video/mp4">
+										</video>
+									</span>
+									MBC step and slip test (poppy seed)
+									</div>
+								</div>
+								</div>
+								<div class="video-slide" style="display: none;">
+								<div class="row 50% uniform" style="width: 100%;">
+									<div class="2u" style="font-size: 1em; line-height: 1.5em; text-align: center; width: 100%">
+									<span class="image fit" style="margin-bottom: 0.5em;">
+										<video controls autoplay loop muted playsinline style="width: 100%; border-radius: 10px;">
+										<source src="videos/hw/mbc_slip_olive.mp4" type="video/mp4">
+										</video>
+									</span>
+									MBC step and slip test (olive oil)
+									</div>
+								</div>
+								</div>
+								<a class="prev" onclick="plusSlides(-1, 'tab-2')" style="cursor: pointer; position: absolute; top: 50%; left: 0; transform: translateY(-50%); padding: 16px; color: white; font-weight: bold; font-size: 20px; background-color: rgba(0,0,0,0.3); border-radius: 0 3px 3px 0;">&#10094;</a>
+								<a class="next" onclick="plusSlides(1, 'tab-2')" style="cursor: pointer; position: absolute; top: 50%; right: 0; transform: translateY(-50%); padding: 16px; color: white; font-weight: bold; font-size: 20px; background-color: rgba(0,0,0,0.3); border-radius: 3px 0 0 3px;">&#10095;</a>
+							</div>
+
+							<div id="tab-3" class="tab-content" style="display: none; position: relative;">
+								<div class="video-slide">
+								<div class="row 50% uniform" style="width: 100%;">
+									<div class="2u" style="font-size: 1em; line-height: 1.5em; text-align: center; width: 100%">
+									<span class="image fit" style="margin-bottom: 0.5em;">
+										<video controls autoplay loop muted playsinline style="width: 100%; border-radius: 10px;">
+										<source src="videos/hw/full_reg_speed.mp4" type="video/mp4">
+										</video>
+									</span>
+									FullReg speed test
+									</div>
+								</div>
+								</div>
+								<div class="video-slide" style="display: none;">
+								<div class="row 50% uniform" style="width: 100%;">
+									<div class="2u" style="font-size: 1em; line-height: 1.5em; text-align: center; width: 100%">
+									<span class="image fit" style="margin-bottom: 0.5em;">
+										<video controls autoplay loop muted playsinline style="width: 100%; border-radius: 10px;">
+										<source src="videos/hw/full_reg_slip_poppy.mp4" type="video/mp4">
+										</video>
+									</span>
+									FullReg step and slip test (poppy seed)
+									</div>
+								</div>
+								</div>
+								<div class="video-slide" style="display: none;">
+								<div class="row 50% uniform" style="width: 100%;">
+									<div class="2u" style="font-size: 1em; line-height: 1.5em; text-align: center; width: 100%">
+									<span class="image fit" style="margin-bottom: 0.5em;">
+										<video controls autoplay loop muted playsinline style="width: 100%; border-radius: 10px;">
+										<source src="videos/hw/full_reg_slip_olive.mp4" type="video/mp4">
+										</video>
+									</span>
+									FullReg step and slip test (olive oil)
+									</div>
+								</div>
+								</div>
+								<a class="prev" onclick="plusSlides(-1, 'tab-3')" style="cursor: pointer; position: absolute; top: 50%; left: 0; transform: translateY(-50%); padding: 16px; color: white; font-weight: bold; font-size: 20px; background-color: rgba(0,0,0,0.3); border-radius: 0 3px 3px 0;">&#10094;</a>
+								<a class="next" onclick="plusSlides(1, 'tab-3')" style="cursor: pointer; position: absolute; top: 50%; right: 0; transform: translateY(-50%); padding: 16px; color: white; font-weight: bold; font-size: 20px; background-color: rgba(0,0,0,0.3); border-radius: 3px 0 0 3px;">&#10095;</a>
+							</div>
+							<div id="tab-4" class="tab-content" style="display: none; position: relative;">
+								<div class="video-slide">
+								<div class="row 50% uniform" style="width: 100%;">
+									<div class="2u" style="font-size: 1em; line-height: 1.5em; text-align: center; width: 100%">
+									<span class="image fit" style="margin-bottom: 0.5em;">
+										<video controls autoplay loop muted playsinline style="width: 100%; border-radius: 10px;">
+										<source src="videos/hw/ifm_speed.mp4" type="video/mp4">
+										</video>
+									</span>
+									IFM speed test
+									</div>
+								</div>
+								</div>
+								<div class="video-slide" style="display: none;">
+								<div class="row 50% uniform" style="width: 100%;">
+									<div class="2u" style="font-size: 1em; line-height: 1.5em; text-align: center; width: 100%">
+									<span class="image fit" style="margin-bottom: 0.5em;">
+										<video controls autoplay loop muted playsinline style="width: 100%; border-radius: 10px;">
+										<source src="videos/hw/ifm_speed_fail.mp4" type="video/mp4">
+										</video>
+									</span>
+									IFM speed test fail
+									</div>
+								</div>
+								</div>
+								<div class="video-slide" style="display: none;">
+								<div class="row 50% uniform" style="width: 100%;">
+									<div class="2u" style="font-size: 1em; line-height: 1.5em; text-align: center; width: 100%">
+									<span class="image fit" style="margin-bottom: 0.5em;">
+										<video controls autoplay loop muted playsinline style="width: 100%; border-radius: 10px;">
+										<source src="videos/hw/ifm_slip_poppy_success.mp4" type="video/mp4">
+										</video>
+									</span>
+									IFM step and slip test success (poppy seed)
+									</div>
+								</div>
+								</div>
+								<div class="video-slide" style="display: none;">
+								<div class="row 50% uniform" style="width: 100%;">
+									<div class="2u" style="font-size: 1em; line-height: 1.5em; text-align: center; width: 100%">
+									<span class="image fit" style="margin-bottom: 0.5em;">
+										<video controls autoplay loop muted playsinline style="width: 100%; border-radius: 10px;">
+										<source src="videos/hw/ifm_slip_fail_poppy_seed.mp4" type="video/mp4">
+										</video>
+									</span>
+									IFM step and slip test failure (poppy seed)
+									</div>
+								</div>
+								</div>
+								<div class="video-slide" style="display: none;">
+								<div class="row 50% uniform" style="width: 100%;">
+									<div class="2u" style="font-size: 1em; line-height: 1.5em; text-align: center; width: 100%">
+									<span class="image fit" style="margin-bottom: 0.5em;">
+										<video controls autoplay loop muted playsinline style="width: 100%; border-radius: 10px;">
+										<source src="videos/hw/ifm_slip_olive_fail.mp4" type="video/mp4">
+										</video>
+									</span>
+									IFM step and slip test failure (olive oil)
+									</div>
+								</div>
+								</div>
+								<a class="prev" onclick="plusSlides(-1, 'tab-4')" style="cursor: pointer; position: absolute; top: 50%; left: 0; transform: translateY(-50%); padding: 16px; color: white; font-weight: bold; font-size: 20px; background-color: rgba(0,0,0,0.3); border-radius: 0 3px 3px 0;">&#10094;</a>
+								<a class="next" onclick="plusSlides(1, 'tab-4')" style="cursor: pointer; position: absolute; top: 50%; right: 0; transform: translateY(-50%); padding: 16px; color: white; font-weight: bold; font-size: 20px; background-color: rgba(0,0,0,0.3); border-radius: 3px 0 0 3px;">&#10095;</a>
+							</div>
+							<div id="tab-5" class="tab-content" style="display: none; position: relative;">
+								<div class="video-slide">
+								<div class="row 50% uniform" style="width: 100%;">
+									<div class="2u" style="font-size: 1em; line-height: 1.5em; text-align: center; width: 100%">
+									<span class="image fit" style="margin-bottom: 0.5em;">
+										<video controls autoplay loop muted playsinline style="width: 100%; border-radius: 10px;">
+										<source src="videos/hw/purerl_speed.mp4" type="video/mp4">
+										</video>
+									</span>
+									PureRL speed test
+									</div>
+								</div>
+								</div>
+								<div class="video-slide" style="display: none;">
+								<div class="row 50% uniform" style="width: 100%;">
+									<div class="2u" style="font-size: 1em; line-height: 1.5em; text-align: center; width: 100%">
+									<span class="image fit" style="margin-bottom: 0.5em;">
+										<video controls autoplay loop muted playsinline style="width: 100%; border-radius: 10px;">
+										<source src="videos/hw/purerl_slip_poppy_fail.mp4" type="video/mp4">
+										</video>
+									</span>
+									PureRL step and slip test (poppy seed)
+									</div>
+								</div>
+								</div>
+								<div class="video-slide" style="display: none;">
+								<div class="row 50% uniform" style="width: 100%;">
+									<div class="2u" style="font-size: 1em; line-height: 1.5em; text-align: center; width: 100%">
+									<span class="image fit" style="margin-bottom: 0.5em;">
+										<video controls autoplay loop muted playsinline style="width: 100%; border-radius: 10px;">
+										<source src="videos/hw/purerl_slip_olive_fail.mp4" type="video/mp4">
+										</video>
+									</span>
+									PureRL step and slip test (olive oil)
+									</div>
+								</div>
+								</div>
+								<a class="prev" onclick="plusSlides(-1, 'tab-5')" style="cursor: pointer; position: absolute; top: 50%; left: 0; transform: translateY(-50%); padding: 16px; color: white; font-weight: bold; font-size: 20px; background-color: rgba(0,0,0,0.3); border-radius: 0 3px 3px 0;">&#10094;</a>
+								<a class="next" onclick="plusSlides(1, 'tab-5')" style="cursor: pointer; position: absolute; top: 50%; right: 0; transform: translateY(-50%); padding: 16px; color: white; font-weight: bold; font-size: 20px; background-color: rgba(0,0,0,0.3); border-radius: 3px 0 0 3px;">&#10095;</a>
+							</div>
+						</div>
+						<script>
+							let slideIndexes = {
+								'tab-1': 1,
+								'tab-2': 1,
+								'tab-3': 1,
+								'tab-4': 1,
+								'tab-5': 1
+							};
+
+							function plusSlides(n, tabId) {
+								showSlides(slideIndexes[tabId] += n, tabId);
+							}
+
+							function showSlides(n, tabId) {
+								let i;
+								let tabContent = document.getElementById(tabId);
+								let slides = tabContent.getElementsByClassName("video-slide");
+								
+								if (n > slides.length) {slideIndexes[tabId] = 1}
+								if (n < 1) {slideIndexes[tabId] = slides.length}
+								
+								for (i = 0; i < slides.length; i++) {
+									slides[i].style.display = "none";
+									let video = slides[i].querySelector('video');
+									if (video) {
+										video.pause();
+									}
+								}
+								
+								slides[slideIndexes[tabId]-1].style.display = "block";
+								let video = slides[slideIndexes[tabId]-1].querySelector('video');
+								if (video) {
+									video.play();
+								}
+							}
+
+							document.addEventListener('DOMContentLoaded', function() {
+								const tabs = document.querySelectorAll('.tabs-container .tab-link');
+								tabs.forEach(tab => {
+									tab.addEventListener('click', function() {
+										const tabId = this.getAttribute('data-tab');
+
+										// Update tab link styles
+										document.querySelectorAll('.tabs-container .tab-link').forEach(t => {
+											t.classList.remove('active');
+											t.style.background = '#eee';
+											t.style.color = '#333';
+										});
+										this.classList.add('active');
+										this.style.background = '#333';
+										this.style.color = '#fff';
+
+										// Show/hide tab content
+										document.querySelectorAll('.tab-content').forEach(content => {
+											if (content.id === tabId) {
+												content.style.display = 'block';
+												const firstSlideVideo = content.querySelector('.video-slide video');
+												if (firstSlideVideo) firstSlideVideo.play();
+											} else {
+												content.style.display = 'none';
+												const videos = content.querySelectorAll('video');
+												videos.forEach(video => video.pause());
+											}
+										});
+									});
+								});
+							});
+						</script>
+						
+						<hr>
+
+						<h3 style="color: #1f4e8b;">Outdoor Hardware Experiments</h3>
+						<div class="tabs-container" style="text-align: center; margin-bottom: 1em;">
+							<ul class="tabs-nav" style="list-style: none; padding: 0; margin: 0; display: inline-block; border: 1px solid #ccc; border-radius: 25px; overflow: hidden;">
+								<li class="tab-link active" data-tab="outdoor-tab-1" style="display: inline-block; padding: 0.6em 1.2em; cursor: pointer; background: #333; color: #fff;">Slope</li>
+								<li class="tab-link" data-tab="outdoor-tab-2" style="display: inline-block; padding: 0.6em 1.2em; cursor: pointer; background: #eee; color: #333;">Sand Terrain</li>
+								<li class="tab-link" data-tab="outdoor-tab-3" style="display: inline-block; padding: 0.6em 1.2em; cursor: pointer; background: #eee; color: #333;">Uneven Terrain</li>
+							</ul>
+						</div>
+						<div class="box alt" style="margin-bottom: 2em;">
+							<div id="outdoor-tab-1" class="tab-content active">
+								<div class="row 50% uniform" style="width: 100%;">
+									<div class="2u" style="font-size: 1em; line-height: 1.5em; text-align: center; width: 100%">
+									<span class="image fit" style="margin-bottom: 0.5em;">
+										<video controls autoplay loop muted playsinline style="width: 100%; border-radius: 10px;">
+										<source src="videos/hw/slope.mp4" type="video/mp4">
+										</video>
+									</span>
+									Slope
+									</div>
+								</div>
+							</div>
+							<div id="outdoor-tab-2" class="tab-content" style="display: none;">
+								<div class="row 50% uniform" style="width: 100%;">
+									<div class="2u" style="font-size: 1em; line-height: 1.5em; text-align: center; width: 100%">
+									<span class="image fit" style="margin-bottom: 0.5em;">
+										<video controls autoplay loop muted playsinline style="width: 100%; border-radius: 10px;">
+										<source src="videos/hw/sand.mp4" type="video/mp4">
+										</video>
+									</span>
+									Sand Terrain
+									</div>
+								</div>
+							</div>
+							<div id="outdoor-tab-3" class="tab-content" style="display: none;">
+								<div class="row 50% uniform" style="width: 100%;">
+									<div class="2u" style="font-size: 1em; line-height: 1.5em; text-align: center; width: 100%">
+									<span class="image fit" style="margin-bottom: 0.5em;">
+										<video controls autoplay loop muted playsinline style="width: 100%; border-radius: 10px;">
+										<source src="videos/hw/uneven_terrain_1.mp4" type="video/mp4">
+										</video>
+									</span>
+									Uneven Terrain
+									</div>
+								</div>
+							</div>
+						</div>
+						<hr>
+				
+						<h3 style="color: #1f4e8b;">BibTeX</h3>
+						<pre><code>@ARTICLE{11155209,
+  author={Jung, Hyunyoung and Gu, Zhaoyuan and Zhao, Ye and Park, Hae-Won and Ha, Sehoon},
+  journal={IEEE Robotics and Automation Letters}, 
+  title={PPF: Pre-Training and Preservative Fine-Tuning of Humanoid Locomotion via Model-Assumption-Based Regularization}, 
+  year={2025},
+  volume={10},
+  number={11},
+  pages={11466-11473},
+  keywords={Humanoid robots;Computational modeling;Legged locomotion;Robots;Adaptation models;Training;Foot;Quadrupedal robots;Neural networks;Tuning;Humanoid and bipedal locomotion;reinforcement learning;continual learning},
+  doi={10.1109/LRA.2025.3608637}}
+</code></pre>
+					
+						<hr>
+						<h3 style="color: #1f4e8b;">Contact</h3>
+						<p style="color: black;">If you have any questions, please feel free to contact <a href="https://hyunyoungjung.github.io/" style="color: #1f4e8b; text-decoration: none !important; border-bottom: none !important;">Hyunyoung Jung</a>.</p>
+						
+					</section>
+
+					
+			</div>
+
+			<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+		<table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+              <td style="padding:0px">
+                <br>
+                <p style="text-align:right;font-size:small;">
+				  This template was borrowed from <a href="https://seungeunrho.github.io/projects/SDAX/">Seungeun Rho</a>
+				  Last update: Oct.2025
+                </p>
+              </td>
+            </tr>
+          </tbody></table>
+	</body>
 </html>
