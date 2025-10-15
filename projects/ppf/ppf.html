@@ -468,32 +468,39 @@
 							}
 
 							document.addEventListener('DOMContentLoaded', function() {
-								const tabs = document.querySelectorAll('.tabs-container .tab-link');
-								tabs.forEach(tab => {
-									tab.addEventListener('click', function() {
-										const tabId = this.getAttribute('data-tab');
+								const tabContainers = document.querySelectorAll('.tabs-container');
 
-										// Update tab link styles
-										document.querySelectorAll('.tabs-container .tab-link').forEach(t => {
-											t.classList.remove('active');
-											t.style.background = '#eee';
-											t.style.color = '#333';
-										});
-										this.classList.add('active');
-										this.style.background = '#333';
-										this.style.color = '#fff';
+								tabContainers.forEach(container => {
+									const tabs = container.querySelectorAll('.tab-link');
+									const contentContainer = container.nextElementSibling;
 
-										// Show/hide tab content
-										document.querySelectorAll('.tab-content').forEach(content => {
-											if (content.id === tabId) {
-												content.style.display = 'block';
-												const firstSlideVideo = content.querySelector('.video-slide video');
-												if (firstSlideVideo) firstSlideVideo.play();
-											} else {
-												content.style.display = 'none';
-												const videos = content.querySelectorAll('video');
-												videos.forEach(video => video.pause());
-											}
+									tabs.forEach(tab => {
+										tab.addEventListener('click', function() {
+											const tabId = this.getAttribute('data-tab');
+
+											// Update tab link styles within the same container
+											tabs.forEach(t => {
+												t.classList.remove('active');
+												t.style.background = '#eee';
+												t.style.color = '#333';
+											});
+											this.classList.add('active');
+											this.style.background = '#333';
+											this.style.color = '#fff';
+
+											// Show/hide tab content within the same section
+											const tabContents = contentContainer.querySelectorAll('.tab-content');
+											tabContents.forEach(content => {
+												if (content.id === tabId) {
+													content.style.display = 'block';
+													const firstSlideVideo = content.querySelector('.video-slide video, video');
+													if (firstSlideVideo) firstSlideVideo.play();
+												} else {
+													content.style.display = 'none';
+													const videos = content.querySelectorAll('video');
+													videos.forEach(video => video.pause());
+												}
+											});
 										});
 									});
 								});
@@ -579,15 +586,15 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 		<table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            <tr>
-              <td style="padding:0px">
-                <br>
-                <p style="text-align:right;font-size:small;">
+			<tr>
+			  <td style="padding:0px">
+				<br>
+				<p style="text-align:right;font-size:small;">
 				  This template was borrowed from <a href="https://seungeunrho.github.io/projects/SDAX/">Seungeun Rho</a>
 				  Last update: Oct.2025
-                </p>
-              </td>
-            </tr>
-          </tbody></table>
+				</p>
+			  </td>
+			</tr>
+		  </tbody></table>
 	</body>
 </html>
