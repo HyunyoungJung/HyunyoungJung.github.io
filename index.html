@@ -29,17 +29,12 @@
                 </p>
                 <p style="text-align:center">
                   <a href="mailto:hjung331@gatech.edu">Email</a> &nbsp;/&nbsp;
-                  <!-- <a href="cv.pdf">CV</a> &nbsp;/&nbsp; -->
-                  <!-- <a href="data/JonBarron-bio.txt">Bio</a> &nbsp;/&nbsp; -->
                   <a href="https://scholar.google.com/citations?user=xR0ESPUAAAAJ&hl=ko&citsig=AD-1fHZJa2SAuKKkTInL3DjXIfy9">Google Scholar</a> &nbsp;/&nbsp;
                   <a href="https://twitter.com/HyunyoungJung5">Twitter</a> &nbsp;/&nbsp;
                   <a href="https://www.linkedin.com/in/hyunyoung-jung">Linkedin</a> &nbsp;/&nbsp;
                   <a href="https://github.com/HyunyoungJung/">Github</a>
                 </p>
               </td>
-              <!-- <td style="padding:2.5%;width:40%;max-width:40%">
-                <a href="images/hyunyoung.jpg"><img style="width:100%;max-width:100%" alt="profile photo" src="images/hyunyoung.jpg" class="profile-photo"></a>
-              </td> -->
               <td style="padding: 20px 20px 20px 0px; width: 25%;">
                 <img class="profile-photo" alt="profile photo" src="images/hyunyoung.jpg">
             </td>
@@ -51,9 +46,6 @@
                 <h2>Research</h2>
                 <p>
                   My research goal is to develop learning-based control algorithms that enable robust, agile and interactive behaviors in human-centered environments. I have worked on combining model-based control and learning based approach for legged locomotion including quadrupeds and humanoids.
-                  <!-- I believe this approach can complement the drawbacks of each method by reducing the burden of reward engineering and improving the performance of the model-based method.   -->
-                  <!-- Furthermore, I am exploring the possibilities of human motion-driven control by establishing correspondence between humans and robots. -->
-                  <!-- Representative papers are <span class="highlight">highlighted</span>. -->
                 </p>
               </td>
             </tr>
@@ -116,7 +108,104 @@
                 </p>
               </td>
             </tr>
-                        
+            
+
+            <tr onmouseout="ifm_stop()" onmouseover="ifm_start()">
+              <td style="padding:20px;width:25%;vertical-align:top">
+                <div class="one">
+                  <div class="two" id='ifm_image'><video  width=100% height=100% muted autoplay loop>
+                  <source src="project_teasers/IFM_teaser/teaser.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                  </video></div>
+                  <img src='project_teasers/IFM_teaser/IFM_teaser.png' width="160">
+                </div>
+                <script type="text/javascript">
+                  function ifm_start() {
+                    document.getElementById('ifm_image').style.opacity = "1";
+                  }
+
+                  function ifm_stop() {
+                    document.getElementById('ifm_image').style.opacity = "0";
+                  }
+                  ifm_stop()
+                </script>
+              </td>
+              <td style="padding:20px;width:75%;vertical-align:top">
+                <a href="projects/ifm/ifm.html">
+                  <span class="papertitle">Imitating and Finetuning Model Predictive Control for Robust and Symmetric Quadrupedal Locomotion</span>
+                </a>
+                <br>
+                Donghoon Youm*,
+                <strong>Hyunyoung Jung*</strong>,
+                Hyeongjun Kim,
+                <a href="https://www.railab.kaist.ac.kr/">Jemin Hwangbo</a>,  <br>
+                <a href="https://www.dynamicrobot.kaist.ac.kr/">Hae-Won Park</a>,
+                <a href="https://faculty.cc.gatech.edu/~sha9/">Sehoon Ha</a>
+                <br>
+                <em>RA-L</em>, 2023
+                <br>
+                <a href="projects/ifm/ifm.html">project page</a>
+                /
+                <a href="https://youtu.be/KmL7mlGBkys">video</a>
+                /
+                <a href="https://arxiv.org/abs/2311.02304">arXiv</a>
+                <p></p>
+                <p>
+                  We propose a learning framework that can bridge between model-based and learning-based approaches for legged robot control by imitating expert model predictive control (MPC) and fine-tuning the pre-trained policy with reinforcement learning.
+                </p>
+              </td>
+            </tr>
+
+            <tr onmouseout="optskill_stop()" onmouseover="optskill_start()">
+              <td style="padding:20px;width:25%;vertical-align:top">
+                <div class="one">
+                  <div class="two" id='optskill_image'><video  width=100% height=100% muted autoplay loop>
+                  <source src="project_teasers/optskill/opt2skill.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                  </video></div>
+                  <img src='project_teasers/optskill/first_frame.png' width="160">
+                </div>
+                <script type="text/javascript">
+                  function optskill_start() {
+                    document.getElementById('optskill_image').style.opacity = "1";
+                  }
+
+                  function optskill_stop() {
+                    document.getElementById('optskill_image').style.opacity = "0";
+                  }
+                  optskill_stop()
+                </script>
+              </td>
+              <td style="padding:20px;width:75%;vertical-align:top">
+                <a href="https://opt2skill.github.io">
+                  <span class="papertitle">Opt2Skill: Imitating Dynamically-feasible Whole-Body Trajectories for Versatile Humanoid Loco-Manipulation</span>
+                </a>
+                <br>
+                <a href="https://fukangl.github.io/">Fukang Liu</a>,
+                <a href="https://guzhaoyuan.com/" target="_blank">Zhaoyuan Gu</a>, 
+                <a href="https://missinglight.github.io/" target="_blank">Yilin Cai</a>, 
+                <a href="https://ziyi-zhou.github.io/" target="_blank">Ziyi Zhou</a>,
+                <strong>Hyunyoung Jung</strong>,
+                <a href="https://scholar.google.com/citations?user=fPNCtVQAAAAJ&hl=en" target="_blank">Jaehwi Jang</a>,
+                <a href="https://opt2skill.github.io/" target="_blank">Shijie Zhao</a>,
+                <a href="https://faculty.cc.gatech.edu/~sha9/" target="_blank">Sehoon Ha</a>, 
+                <a href="https://research.gatech.edu/people/yue-chen" target="_blank">Yue Chen</a>, 
+                <a href="https://faculty.cc.gatech.edu/~danfei/" target="_blank">Danfei Xu<sup>†</sup></a>,
+                <a href="https://research.gatech.edu/people/ye-zhao" target="_blank">Ye Zhao<sup>†</sup></a>
+                <br>
+                <em>RA-L</em>, 2025
+                <br>
+                <a href="https://opt2skill.github.io">project page</a>
+                /
+                <a href="https://www.youtube.com/watch?v=DRHfpCYXJfU">video</a>
+                /
+                <a href="https://arxiv.org/abs/2409.20514">arXiv</a>
+                <p>
+                  We introduce Opt2Skill, an end-to-end pipeline that combines model-based trajectory optimization with RL to achieve robust whole-body loco-manipulation.
+                </p>
+              </td>
+            </tr>
+            
             <tr onmouseout="crossloco_stop()" onmouseover="crossloco_start()">
               <td style="padding:20px;width:25%;vertical-align:top">
                 <div class="one">
@@ -164,101 +253,10 @@
               </td>
             </tr>
             
-            <tr onmouseout="ifm_stop()" onmouseover="ifm_start()">
-              <td style="padding:20px;width:25%;vertical-align:top">
-                <div class="one">
-                  <div class="two" id='ifm_image'><video  width=100% height=100% muted autoplay loop>
-                  <source src="project_teasers/IFM_teaser/teaser.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                  </video></div>
-                  <img src='project_teasers/IFM_teaser/IFM_teaser.png' width="160">
-                </div>
-                <script type="text/javascript">
-                  function ifm_start() {
-                    document.getElementById('ifm_image').style.opacity = "1";
-                  }
-
-                  function ifm_stop() {
-                    document.getElementById('ifm_image').style.opacity = "0";
-                  }
-                  ifm_stop()
-                </script>
-              </td>
-              <td style="padding:20px;width:75%;vertical-align:top">
-                <a href="projects/ifm/ifm.html">
-                  <span class="papertitle">Imitating and Finetuning Model Predictive Control for Robust and Symmetric Quadrupedal Locomotion</span>
-                </a>
-                <br>
-                Donghoon Youm*,
-                <strong>Hyunyoung Jung*</strong>,
-                Hyeongjun Kim,
-                <a href="https://www.railab.kaist.ac.kr/">Jemin Hwangbo</a>,  <br>
-                <a href="https://www.dynamicrobot.kaist.ac.kr/">Hae-Won Park</a>,
-                <a href="https://faculty.cc.gatech.edu/~sha9/">Sehoon Ha</a>
-                <br>
-                <em>RA-L</em>, 2023
-                <br>
-                <a href="projects/ifm/ifm.html">project page</a>
-                /
-                <a href="https://youtu.be/KmL7mlGBkys">video</a>
-                /
-                <a href="https://arxiv.org/abs/2311.02304">arXiv</a>
-                <p></p>
-                <p>
-                  We propose a learning framework that can bridge between model-based and learning-based approaches for legged robot control by imitating expert model predictive control (MPC) and fine-tuning the pre-trained policy with reinforcement learning.
-                </p>
-              </td>
-            </tr>
       
       
 
           </tbody></table>
-
-          <!-- <table>
-            <tbody>
-            <tr>
-              <td style="padding:20px;width:100%;vertical-align:middle; line-height:10px">
-                    <h2>Ongoing Projects </h2><br>
-                </td>
-            </tr>
-            </tbody>
-          </table>
-          
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;margin-top:-25px"><tbody>
-            
-            <tr onmouseout="digit_ifm_stop()" onmouseover="digit_ifm_start()">
-              <td style="padding:20px;width:25%;vertical-align:top">
-                <div class="one">
-                  <div class="two" id='digit_ifm_image'><video  width=100% height=100% muted autoplay loop>
-                  <source src="project_teasers/digit_ifm/teaser.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                  </video></div>
-                  <img src='project_teasers/digit_ifm/teaser.png' width="160">
-                </div>
-                <script type="text/javascript">
-                  function digit_ifm_start() {
-                    document.getElementById('digit_ifm_image').style.opacity = "1";
-                  }
-      
-                  function digit_ifm_stop() {
-                    document.getElementById('digit_ifm_image').style.opacity = "0";
-                  }
-                  digit_ifm_stop()
-                </script>
-              </td>
-
-              <td style="padding:20px;width:75%;vertical-align:top">
-                <span class="papertitle">Humanoid locomotion with learning-based method leveraging model-based control</span>
-                <p>
-                  Training the locomotion of full-sized humanoids is a challenging task and less investigated in a learning-based control society compared to quadrupedal robot locomotion. 
-                  Unlike quadrupeds, the humanoids have more complicated structures making it hard to use a straightforward model-free reinforcement learning approach.
-                  <br>
-                  In this project, we address this issue by utilizing our established framework, IFM, to enhance the robustness of humanoid locomotion, specifically solving instability in the reinforcement learning stage.
-                </p>
-              </td>
-            </tr>
-            </tbody>
-            </table> -->
 
           <table>
             <tbody>
