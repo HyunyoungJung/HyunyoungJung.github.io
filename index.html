@@ -45,7 +45,7 @@
               <td style="padding:20px;width:100%;vertical-align:middle">
                 <h2>Research</h2>
                 <p>
-                  My research goal is to develop learning-based control algorithms that enable robust, agile and interactive behaviors in human-centered environments. I have worked on combining model-based control and learning based approach for legged locomotion including quadrupeds and humanoids.
+                  My research focuses on developing learning-based control algorithms that enable robust, agile, and interactive robot behaviors in human-centered environments. I have worked on integrating model-based control with reinforcement learning for quadrupedal and humanoid locomotion. Currently, I am exploring whole-body humanoid manipulation using human data.
                 </p>
               </td>
             </tr>
@@ -155,6 +155,57 @@
                 </p>
               </td>
             </tr>
+            
+
+            <tr onmouseout="adaptmanip_stop()" onmouseover="adaptmanip_start()">
+              <td style="padding:20px;width:25%;vertical-align:top">
+                <div class="one">
+                  <div class="two" id='adaptmanip_image'><video  width=100% height=100% muted autoplay loop>
+                  <source src="project_teasers/adaptmani/adaptManip.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                  </video></div>
+                  <img src='project_teasers/adaptmani/first_frame.png' width="160">
+                </div>
+                <script type="text/javascript">
+                  function adaptmanip_start() {
+                    document.getElementById('adaptmanip_image').style.opacity = "1";
+                  }
+
+                  function adaptmanip_stop() {
+                    document.getElementById('adaptmanip_image').style.opacity = "0";
+                  }
+                  adaptmanip_stop()
+                </script>
+              </td>
+              <td style="padding:20px;width:75%;vertical-align:top">
+                <a href="https://morganbyrd03.github.io/adaptmanip/">
+                  <span class="papertitle">AdaptManip: Learning Adaptive Whole-Body Object Lifting and Delivery with Online Recurrent State Estimation</span>
+                </a>
+                <br>
+                <a href="https://morganbyrd03.github.io/" target="_blank">Morgan Byrd</a>,
+                <a href="https://romansabaek.github.io/" target="_blank">Donghoon Baek</a>, 
+                <a href="https://sites.google.com/view/kartik-garg/home" target="_blank">Kartik Garg</a>, 
+                <strong>Hyunyoung Jung</strong>,
+                <a href="https://dscho1234.github.io/" target="_blank">Daesol Cho</a>,
+                <a href="https://itsmaks.com/" target="_blank">Maks Sorokin</a>, 
+                <a href="https://www.linkedin.com/in/robert-wright-690764b0" target="_blank">Robert Wright</a>, 
+                <a href="https://faculty.cc.gatech.edu/~sha9/" target="_blank">Sehoon Ha</a>,
+                <br>
+                <em>Under Review</em>
+                <br>
+                <a href="https://morganbyrd03.github.io/adaptmanip/">project page</a>
+                /
+                <a href="https://arxiv.org/abs/2602.14363">arXiv</a>
+                <p>
+                  We introduce AdaptManip, a fully autonomous framework that enables humanoid robots to navigate, lift objects, and deliver them in an integrated manner. Its recurrent pose estimator provides robust state estimation under intermittent and noisy visual observations, supporting reliable closed-loop loco-manipulation.
+                </p>
+              </td>
+            </tr>
+
+
+
+
+
 
             <tr onmouseout="optskill_stop()" onmouseover="optskill_start()">
               <td style="padding:20px;width:25%;vertical-align:top">
@@ -190,8 +241,8 @@
                 <a href="https://opt2skill.github.io/" target="_blank">Shijie Zhao</a>,
                 <a href="https://faculty.cc.gatech.edu/~sha9/" target="_blank">Sehoon Ha</a>, 
                 <a href="https://research.gatech.edu/people/yue-chen" target="_blank">Yue Chen</a>, 
-                <a href="https://faculty.cc.gatech.edu/~danfei/" target="_blank">Danfei Xu<sup>†</sup></a>,
-                <a href="https://research.gatech.edu/people/ye-zhao" target="_blank">Ye Zhao<sup>†</sup></a>
+                <a href="https://faculty.cc.gatech.edu/~danfei/" target="_blank">Danfei Xu</a>,
+                <a href="https://research.gatech.edu/people/ye-zhao" target="_blank">Ye Zhao</a>
                 <br>
                 <em>RA-L</em>, 2025
                 <br>
