@@ -145,8 +145,8 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/teaser.mp4"
+      <video id="teaser" muted loop playsinline height="100%" preload="none">
+        <source data-src="./static/videos/teaser.mp4"
                 type="video/mp4">
       </video>
       <!-- <h2 class="subtitle has-text-centered">
@@ -200,14 +200,12 @@
         <h2 class="title is-3 has-text-centered">Learning Framework</h2>
         
         <div class="video-container">          
-          <video id="learning-framework"      
-                 autoplay
+          <video id="learning-framework"
                  muted
-                 preload
                  playsinline
                  loop
-                 width="100%">
-            <source src="static/videos/learning_framework.mp4"
+                 width="100%" preload="none">
+            <source data-src="static/videos/learning_framework.mp4"
                     type="video/mp4">
           </video>
         </div>
@@ -254,14 +252,14 @@
           <div class="columns is-vcentered has-text-centered is-full-width">
             <div class="column">
               <h2 class="title is-5" style="color: blue;">MPC</h2>
-              <video controls autoplay muted preload loop>
-                <source src="static/videos/simulation/mpc_rough.mp4" type="video/mp4">
+              <video controls muted loop preload="none">
+                <source data-src="static/videos/simulation/mpc_rough.mp4" type="video/mp4">
               </video>
             </div>
             <div class="column">
               <h2 class="title is-5" style="color: rgb(54, 228, 54);">IFM(SR)</h2>
-              <video controls autoplay muted preload loop>
-                <source src="static/videos/simulation/IFM_rough.mp4" type="video/mp4">
+              <video controls muted loop preload="none">
+                <source data-src="static/videos/simulation/IFM_rough.mp4" type="video/mp4">
               </video>
             </div>
           </div>
@@ -274,14 +272,14 @@
           <div class="columns is-vcentered has-text-centered is-full-width">
             <div class="column">
               <h2 class="title is-5" style="color: blue;">MPC</h2>
-              <video controls autoplay muted preload loop>
-                <source src="static/videos/simulation/mpc_slip.mp4" type="video/mp4">
+              <video controls muted loop preload="none">
+                <source data-src="static/videos/simulation/mpc_slip.mp4" type="video/mp4">
               </video>
             </div>
             <div class="column">
               <h2 class="title is-5" style="color: rgb(54, 228, 54);">IFM(SR)</h2>
-              <video controls autoplay muted preload loop>
-                <source src="static/videos/simulation/IFM_slip.mp4" type="video/mp4">
+              <video controls muted loop preload="none">
+                <source data-src="static/videos/simulation/IFM_slip.mp4" type="video/mp4">
               </video>
             </div>
           </div>
@@ -296,14 +294,14 @@
           <div class="columns is-vcentered has-text-centered is-full-width">
             <div class="column">
               <h2 class="title is-5" style="color: blue;">MPC</h2>
-              <video controls autoplay muted preload loop>
-                <source src="static/videos/simulation/mpc_conveyor.mp4" type="video/mp4">
+              <video controls muted loop preload="none">
+                <source data-src="static/videos/simulation/mpc_conveyor.mp4" type="video/mp4">
               </video>
             </div>
             <div class="column">
               <h2 class="title is-5" style="color: rgb(54, 228, 54);">IFM(SR)</h2>
-              <video controls autoplay muted preload loop>
-                <source src="static/videos/simulation/IFM_conveyor.mp4" type="video/mp4">
+              <video controls muted loop preload="none">
+                <source data-src="static/videos/simulation/IFM_conveyor.mp4" type="video/mp4">
               </video>
             </div>
           </div>
@@ -353,8 +351,8 @@
       <div class="tabs-content">
         <div>          
           <div class="column">
-            <video controls autoplay preload loop>
-              <source src="static/videos/hardware/IFM(SR)/IFM_SR_command2_hw.mp4" type="video/mp4">
+            <video controls loop preload="none">
+              <source data-src="static/videos/hardware/IFM(SR)/IFM_SR_command2_hw.mp4" type="video/mp4">
             </video>      
             <img src="static/images/speaker.png" alt="Overlay image" style="position: absolute;top: 145px; left: 850px; width: 10%; height: 10%; opacity: 1.0;">      
           </div>          
@@ -362,8 +360,8 @@
   
         <div>          
           <div class="column">
-            <video controls autoplay preload loop>
-              <source src="static/videos/hardware/RL(SR)/RL_SR_command2_hw.mp4" type="video/mp4">
+            <video controls loop preload="none">
+              <source data-src="static/videos/hardware/RL(SR)/RL_SR_command2_hw.mp4" type="video/mp4">
             </video>            
             <img src="static/images/speaker.png" alt="Overlay image" style="position: absolute;top: 145px; left: 850px; width: 10%; height: 10%; opacity: 1.0;">      
           </div>          
@@ -371,8 +369,8 @@
 
         <div>          
           <div class="column">
-            <video controls autoplay preload loop>
-              <source src="static/videos/hardware/IFM(CR)/IFM_CR_command_hw.mp4" type="video/mp4">
+            <video controls loop preload="none">
+              <source data-src="static/videos/hardware/IFM(CR)/IFM_CR_command_hw.mp4" type="video/mp4">
             </video>            
             <img src="static/images/speaker.png" alt="Overlay image" style="position: absolute;top: 145px; left: 850px; width: 10%; height: 10%; opacity: 1.0;">      
           </div>          
@@ -380,8 +378,8 @@
 
         <div>          
           <div class="column">
-            <video controls autoplay preload loop>
-              <source src="static/videos/hardware/RL(CR)/RL_CR_command_hw.mp4" type="video/mp4">
+            <video controls loop preload="none">
+              <source data-src="static/videos/hardware/RL(CR)/RL_CR_command_hw.mp4" type="video/mp4">
             </video>            
             <img src="static/images/speaker.png" alt="Overlay image" style="position: absolute;top: 145px; left: 850px; width: 10%; height: 10%; opacity: 1.0;">      
           </div>          
@@ -426,20 +424,20 @@
         <div id="results-carousel" class="carousel results-carousel">
           <div class="item item-mpc-command has-text-centered column">            
               <p>Command Tracking</p>            
-              <video controls autoplay preload loop>
-                <source src="static/videos/hardware/MPC/MPC_command_hw.mp4" type="video/mp4">       
+              <video controls loop preload="none">
+                <source data-src="static/videos/hardware/MPC/MPC_command_hw.mp4" type="video/mp4">       
               </video>
           </div>          
           <div class="item item-mpc-slip has-text-centered">
             <p>Slip Test(fail)</p>
-            <video controls autoplay preload loop>
-              <source src="static/videos/hardware/MPC/MPC_slip_hw.mp4" type="video/mp4">
+            <video controls loop preload="none">
+              <source data-src="static/videos/hardware/MPC/MPC_slip_hw.mp4" type="video/mp4">
             </video>          
           </div>        
           <div class="item item-mpc-step has-text-centered">
             <p>Step Test(5cm fail)</p>
-            <video controls autoplay preload loop>
-              <source src="static/videos/hardware/MPC/MPC_step_5cm_hw.mp4" type="video/mp4">
+            <video controls loop preload="none">
+              <source data-src="static/videos/hardware/MPC/MPC_step_5cm_hw.mp4" type="video/mp4">
             </video>          
           </div>            
         </div>
@@ -447,20 +445,20 @@
         <div id="results-carousel" class="carousel results-carousel">
           <div class="item item-DAgger-command has-text-centered">            
               <p>Command Tracking</p>            
-              <video controls autoplay preload loop>
-                <source src="static/videos/hardware/DAgger/DAgger_command_hw.mp4" type="video/mp4">
+              <video controls loop preload="none">
+                <source data-src="static/videos/hardware/DAgger/DAgger_command_hw.mp4" type="video/mp4">
               </video>                          
           </div>                 
           <div class="item item-DAgger-slip has-text-centered">
             <p>Slip Test(fail)</p>
-            <video controls autoplay preload loop>
-              <source src="static/videos/hardware/DAgger/DAgger_slip_f_hw.mp4" type="video/mp4">
+            <video controls loop preload="none">
+              <source data-src="static/videos/hardware/DAgger/DAgger_slip_f_hw.mp4" type="video/mp4">
             </video>          
           </div>        
           <div class="item item-DAgger-step has-text-centered">
             <p>Step Test(5cm fail)</p>
-            <video controls autoplay preload loop>
-              <source src="static/videos/hardware/DAgger/DAgger_step_5cm_hw.mp4" type="video/mp4">
+            <video controls loop preload="none">
+              <source data-src="static/videos/hardware/DAgger/DAgger_step_5cm_hw.mp4" type="video/mp4">
             </video>          
           </div>            
         </div>
@@ -468,32 +466,32 @@
         <div id="results-carousel" class="carousel results-carousel">
           <div class="item item-IFM(SR)-command has-text-centered">            
               <p>Command Tracking</p>            
-              <video controls autoplay preload loop>
-                <source src="static/videos/hardware/IFM(SR)/IFM_SR_command2_hw.mp4" type="video/mp4">
+              <video controls loop preload="none">
+                <source data-src="static/videos/hardware/IFM(SR)/IFM_SR_command2_hw.mp4" type="video/mp4">
               </video>                          
           </div>                 
           <div class="item item-IFM(SR)-slip has-text-centered">
             <p>Slip Test(success)</p>
-            <video controls autoplay preload loop>
-              <source src="static/videos/hardware/IFM(SR)/IFM_SR_slip_s_hw.mp4" type="video/mp4">
+            <video controls loop preload="none">
+              <source data-src="static/videos/hardware/IFM(SR)/IFM_SR_slip_s_hw.mp4" type="video/mp4">
             </video>          
           </div>        
           <div class="item item-IFM(SR)-step has-text-centered">
             <p>Step Test(5cm success)</p>
-            <video controls autoplay preload loop>
-              <source src="static/videos/hardware/IFM(SR)/IFM_SR_step_5cm_s_hw.mp4" type="video/mp4">
+            <video controls loop preload="none">
+              <source data-src="static/videos/hardware/IFM(SR)/IFM_SR_step_5cm_s_hw.mp4" type="video/mp4">
             </video>          
           </div>
           <div class="item item-IFM(SR)-step has-text-centered">
             <p>Step Test(7.5cm success)</p>
-            <video controls autoplay preload loop>
-              <source src="static/videos/hardware/IFM(SR)/IFM_SR_step_75cm_s_hw.mp4" type="video/mp4">
+            <video controls loop preload="none">
+              <source data-src="static/videos/hardware/IFM(SR)/IFM_SR_step_75cm_s_hw.mp4" type="video/mp4">
             </video>          
           </div>
           <div class="item item-IFM(SR)-step has-text-centered">
             <p>Step Test(7.5cm fail)</p>
-            <video controls autoplay preload loop>
-              <source src="static/videos/hardware/IFM(SR)/IFM_SR_step_75cm_fail_hw.mp4" type="video/mp4">
+            <video controls loop preload="none">
+              <source data-src="static/videos/hardware/IFM(SR)/IFM_SR_step_75cm_fail_hw.mp4" type="video/mp4">
             </video>          
           </div>
         </div>
@@ -501,26 +499,26 @@
         <div id="results-carousel" class="carousel results-carousel">
           <div class="item item-dagger-command has-text-centered">            
               <p>Command Tracking</p>            
-              <video controls autoplay preload loop>
-                <source src="static/videos/hardware/RL(SR)/RL_SR_command1_hw.mp4" type="video/mp4">
+              <video controls loop preload="none">
+                <source data-src="static/videos/hardware/RL(SR)/RL_SR_command1_hw.mp4" type="video/mp4">
               </video>                          
           </div>                 
           <div class="item item-RL(SR)-slip has-text-centered">
             <p>Slip Test(success)</p>
-            <video controls autoplay preload loop>
-              <source src="static/videos/hardware/RL(SR)/RL_SR_slip_s_hw.mp4" type="video/mp4">
+            <video controls loop preload="none">
+              <source data-src="static/videos/hardware/RL(SR)/RL_SR_slip_s_hw.mp4" type="video/mp4">
             </video>          
           </div>        
           <div class="item item-RL(SR)-step has-text-centered">
             <p>Step Test(5cm success)</p>
-            <video controls autoplay preload loop>
-              <source src="static/videos/hardware/RL(SR)/RL_SR_step_5cm_hw.mp4" type="video/mp4">
+            <video controls loop preload="none">
+              <source data-src="static/videos/hardware/RL(SR)/RL_SR_step_5cm_hw.mp4" type="video/mp4">
             </video>          
           </div>
           <div class="item item-RL(SR)-step has-text-centered">
             <p>Step Test(7.5cm fail)</p>
-            <video controls autoplay preload loop>
-              <source src="static/videos/hardware/RL(SR)/RL_SR_step_75cm_f_hw.mp4" type="video/mp4">
+            <video controls loop preload="none">
+              <source data-src="static/videos/hardware/RL(SR)/RL_SR_step_75cm_f_hw.mp4" type="video/mp4">
             </video>          
           </div>
         </div>
@@ -528,20 +526,20 @@
         <div id="results-carousel" class="carousel results-carousel">
           <div class="item item-IFM(CR)-command has-text-centered">            
               <p>Command Tracking</p>            
-              <video controls autoplay preload loop>
-                <source src="static/videos/hardware/IFM(CR)/IFM_CR_command_hw.mp4" type="video/mp4">
+              <video controls loop preload="none">
+                <source data-src="static/videos/hardware/IFM(CR)/IFM_CR_command_hw.mp4" type="video/mp4">
               </video>                          
           </div>                 
           <div class="item item-IFM(CR)-slip has-text-centered">
             <p>Slip Test(success)</p>
-            <video controls autoplay preload loop>
-              <source src="static/videos/hardware/IFM(CR)/IFM_CR_slip_s_hw.mp4" type="video/mp4">
+            <video controls loop preload="none">
+              <source data-src="static/videos/hardware/IFM(CR)/IFM_CR_slip_s_hw.mp4" type="video/mp4">
             </video>          
           </div>        
           <div class="item item-IFM(CR)-step has-text-centered">
             <p>Step Test(7.5cm success)</p>
-            <video controls autoplay preload loop>
-              <source src="static/videos/hardware/IFM(CR)/IFM_CR_step_75cm_s_hw.mp4" type="video/mp4">
+            <video controls loop preload="none">
+              <source data-src="static/videos/hardware/IFM(CR)/IFM_CR_step_75cm_s_hw.mp4" type="video/mp4">
             </video>          
           </div>
         </div>
@@ -549,14 +547,14 @@
         <div id="results-carousel" class="carousel results-carousel">
           <div class="item item-RL(CR)-command has-text-centered">            
               <p>Command Tracking</p>            
-              <video controls autoplay preload loop>
-                <source src="static/videos/hardware/RL(CR)/RL_CR_command_hw.mp4" type="video/mp4">
+              <video controls loop preload="none">
+                <source data-src="static/videos/hardware/RL(CR)/RL_CR_command_hw.mp4" type="video/mp4">
               </video>                          
           </div>                     
           <div class="item item-RL(CR)-step has-text-centered">
             <p>Step Test(7.5cm success)</p>
-            <video controls autoplay preload loop>
-              <source src="static/videos/hardware/RL(CR)/RL_CR_step_75cm_s_hw.mp4" type="video/mp4">
+            <video controls loop preload="none">
+              <source data-src="static/videos/hardware/RL(CR)/RL_CR_step_75cm_s_hw.mp4" type="video/mp4">
             </video>          
           </div>
         </div>
@@ -564,20 +562,20 @@
         <div id="results-carousel" class="carousel results-carousel">
           <div class="item item-concurrentRL-command has-text-centered">            
               <p>Command Tracking</p>            
-              <video controls autoplay preload loop>
-                <source src="static/videos/hardware/concurrentRL/concurrentRL_command_hw.mp4" type="video/mp4">
+              <video controls loop preload="none">
+                <source data-src="static/videos/hardware/concurrentRL/concurrentRL_command_hw.mp4" type="video/mp4">
               </video>                          
           </div>                     
           <div class="item item-concurrentRL-step has-text-centered">
             <p>Slip Test(success)</p>
-            <video controls autoplay preload loop>
-              <source src="static/videos/hardware/concurrentRL/concurrentRL_slip_s_hw.mp4" type="video/mp4">
+            <video controls loop preload="none">
+              <source data-src="static/videos/hardware/concurrentRL/concurrentRL_slip_s_hw.mp4" type="video/mp4">
             </video>          
           </div>
           <div class="item item-concurrentRL-step has-text-centered">
             <p>Step Test(5cm fail)</p>
-            <video controls autoplay preload loop>
-              <source src="static/videos/hardware/concurrentRL/concurrentRL_step_5cm_hw.mp4" type="video/mp4">
+            <video controls loop preload="none">
+              <source data-src="static/videos/hardware/concurrentRL/concurrentRL_step_5cm_hw.mp4" type="video/mp4">
             </video>          
           </div>
         </div>

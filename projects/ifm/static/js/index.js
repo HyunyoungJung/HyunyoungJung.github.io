@@ -1,35 +1,38 @@
 window.HELP_IMPROVE_VIDEOJS = false;
 
 
-// From: https://benfrain.com/automatically-play-and-pause-video-as-it-enters-and-leaves-the-viewport-screen/
+// Lazy-load videos and only play them while they are in the viewport.
+// Sources use `data-src` instead of `src`, so nothing downloads until the
+// video scrolls into view (avoids loading every video on page load).
 function playPauseVideo() {
   let videos = document.querySelectorAll("video");
-  videos.forEach((video) => {
-      // We can only control playback without insteraction if video is mute
-      video.muted = true;
-      // Play is a promise so we need to check we have it
-      let playPromise = video.play();
-      if (playPromise !== undefined) {
-          playPromise.then((_) => {
-              let observer = new IntersectionObserver(
-                  (entries) => {
-                      entries.forEach((entry) => {
-                          if (
-                              entry.intersectionRatio !== 1 &&
-                              !video.paused
-                          ) {
-                              video.pause();
-                          } else if (video.paused) {
-                              video.play();
-                          }
+  let observer = new IntersectionObserver(
+      (entries) => {
+          entries.forEach((entry) => {
+              let video = entry.target;
+              if (entry.isIntersecting) {
+                  // Swap data-src -> src and load the first time it enters view
+                  if (!video.dataset.loaded) {
+                      video.querySelectorAll("source[data-src]").forEach((s) => {
+                          s.src = s.getAttribute("data-src");
                       });
-                  },
-                  { threshold: 0.5 }
-              );
-              observer.observe(video);
+                      video.load();
+                      video.dataset.loaded = "1";
+                  }
+                  // We can only autoplay without interaction if the video is muted
+                  video.muted = true;
+                  let playPromise = video.play();
+                  if (playPromise !== undefined) {
+                      playPromise.catch(() => {});
+                  }
+              } else if (!video.paused) {
+                  video.pause();
+              }
           });
-      }
-  });
+      },
+      { threshold: 0.25, rootMargin: "200px 0px" }
+  );
+  videos.forEach((video) => observer.observe(video));
 }
 
 // modified from https://camp-nerf.github.io/ 
