@@ -155,3 +155,31 @@ body {
 #interpolation-image-wrapper img {
   border-radius: 5px;
 }
+
+/* --- mobile responsiveness (added) --- */
+@media screen and (max-width: 768px) {
+  .publication-title.title.is-2 { font-size: 1.55rem !important; line-height: 1.25; }
+  .publication-authors { font-size: 0.95rem; }
+  img, video { max-width: 100%; height: auto; }
+  pre, code { white-space: pre-wrap !important; word-break: break-word; }
+  /* keep the carousel track from forcing horizontal page scroll */
+  .carousel, .results-carousel, .carousel .slider { overflow: hidden !important; }
+  /* comparison tab navs: wrap instead of overflowing one row.
+     The <ul> is a flex item in bulma .tabs with flex-shrink:0, so it must be
+     allowed to shrink + capped before flex-wrap can take effect. */
+  .tabs { overflow: visible !important; }
+  .tabs ul.is-marginless, ul.is-marginless {
+    flex-wrap: wrap !important;
+    flex-shrink: 1 !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+  }
+  /* speaker-icon overlays use inline left:850px (desktop video width) which
+     flies off-screen on mobile; pin them to the video's bottom-right corner */
+  .tabs-content .column { position: relative !important; }
+  .tabs-content img[alt="Overlay image"] {
+    left: auto !important; right: 8px !important;
+    top: auto !important; bottom: 8px !important;
+    width: 28px !important; height: auto !important;
+  }
+}
